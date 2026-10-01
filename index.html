@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>CLEANIMANN — Beyond Clean.</title>
+  <meta
+    name="description"
+    content="CLEANIMANN — Premium cleaning and facility services. Precision. Standards. Excellence."
+  />
+
+  <style>
+    :root {
+      --black: #050505;
+      --black-soft: #0b0b0b;
+      --white: #f5f5f2;
+      --muted: #a3a3a0;
+      --gold: #c8a96b;
+      --gold-light: #e0c58b;
+      --line: rgba(255,255,255,0.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 86px;
+      z-index: 1000;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 6vw;
+
+      background: rgba(5,5,5,0.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .monogram {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--gold);
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: -1px;
+      font-weight: 700;
+    }
+
+    .brand-name {
+      font-size: 17px;
+      letter-spacing: 5px;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 38px;
+      list-style: none;
+      font-size: 12px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      color: #d7d7d4;
+      transition: color .3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .nav-contact {
+      border: 1px solid rgba(200,169,107,.65);
+      padding: 13px 19px;
+      transition: all .3s ease;
+    }
+
+    .nav-contact:hover {
+      background: var(--gold);
+      color: var(--black) !important;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+
+      display: flex;
+      align-items: center;
+
+      padding: 150px 8vw 100px;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 78% 38%,
+          rgba(200,169,107,.13),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 20% 80%,
+          rgba(255,255,255,.035),
+          transparent 30%
+        ),
+        var(--black);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(
+          115deg,
+          transparent 0%,
+          rgba(255,255,255,.025) 48%,
+          transparent 49%
+        );
+
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .eyebrow {
+      color: var(--gold-light);
+      font-size: 11px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+
+    .hero h1 {
+      font-size: clamp(58px, 10vw, 150px);
+      line-height: .86;
+      letter-spacing: -5px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(245,245,242,.7);
+    }
+
+    .hero-line {
+      width: 100px;
+      height: 1px;
+      background: var(--gold);
+      margin: 42px 0 28px;
+    }
+
+    .hero-subtitle {
+      max-width: 550px;
+      color: #bdbdb9;
+      font-size: 16px;
+      line-height: 1.8;
+      letter-spacing: .3px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      margin-top: 42px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 17px 28px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 1px solid var(--gold);
+      transition: all .3s ease;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+    }
+
+    .btn-secondary {
+      color: var(--white);
+      border-color: var(--line);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    .hero-mark {
+      position: absolute;
+      right: 8vw;
+      top: 50%;
+      transform: translateY(-50%);
+
+      width: min(34vw, 470px);
+      aspect-ratio: 1;
+
+      border: 1px solid rgba(200,169,107,.22);
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      opacity: .75;
+    }
+
+    .hero-mark::before,
+    .hero-mark::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.07);
+    }
+
+    .hero-mark::before {
+      width: 72%;
+      height: 72%;
+    }
+
+    .hero-mark::after {
+      width: 48%;
+      height: 48%;
+    }
+
+    .hero-ci {
+      font-size: clamp(60px, 8vw, 120px);
+      font-weight: 700;
+      letter-spacing: -13px;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--gold);
+      margin-left: -11px;
+    }
+
+    /* =========================
+       INTRO
+    ========================= */
+
+    section {
+      padding: 120px 8vw;
+    }
+
+    .intro {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .section-label {
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+
+    .intro h2 {
+      max-width: 950px;
+      font-size: clamp(38px, 5vw, 72px);
+      line-height: 1.03;
+      font-weight: 400;
+      letter-spacing: -2px;
+    }
+
+    .intro h2 em {
+      color: #777;
+      font-style: normal;
+    }
+
+    .intro-text {
+      max-width: 680px;
+      margin-top: 40px;
+      color: #555;
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    /* =========================
+       SERVICES
+    ========================= */
+
+    .services {
+      background: var(--black-soft);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(40px, 6vw, 78px);
+      font-weight: 400;
+      letter-spacing: -3px;
+    }
+
+    .section-heading p {
+      max-width: 400px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .service {
+      min-height: 290px;
+      padding: 38px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      transition: background .4s ease;
+    }
+
+    .service:hover {
+      background: rgba(200,169,107,.055);
+    }
+
+    .service-number {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+
+    .service h3 {
+      margin-top: 70px;
+      font-size: 25px;
+      font-weight: 400;
+      letter-spacing: -.5px;
+    }
+
+    .service p {
+      margin-top: 15px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       STATEMENT
+    ========================= */
+
+    .statement {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(
+          135deg,
+          #080808,
+          #101010
+        );
+    }
+
+    .statement-inner {
+      width: 100%;
+      text-align: center;
+    }
+
+    .statement h2 {
+      font-size: clamp(48px, 9vw, 130px);
+      font-weight: 400;
+      line-height: .95;
+      letter-spacing: -5px;
+    }
+
+    .statement h2 span {
+      color: var(--gold);
+    }
+
+    .statement p {
+      margin: 35px auto 0;
+      max-width: 600px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 100px;
+      align-items: start;
+    }
+
+    .contact h2 {
+      font-size: clamp(45px, 7vw, 95px);
+      line-height: .95;
+      font-weight: 400;
+      letter-spacing: -4px;
+    }
+
+    .contact-copy {
+      margin-top: 30px;
+      max-width: 550px;
+      color: #5e5e5a;
+      line-height: 1.8;
+    }
+
+    .contact-details {
+      border-top: 1px solid #d0d0cb;
+    }
+
+    .contact-row {
+      padding: 22px 0;
+      border-bottom: 1px solid #d0d0cb;
+    }
+
+    .contact-row small {
+      display: block;
+      color: #777;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .contact-row strong {
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 35px 8vw;
+      background: #050505;
+      color: #777;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    footer span {
+      color: var(--gold);
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      nav {
+        height: 72px;
+        padding: 0 5vw;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 140px 7vw 100px;
+      }
+
+      .hero-mark {
+        width: 280px;
+        right: -100px;
+        top: 65%;
+        opacity: .35;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      section {
+        padding: 90px 7vw;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading p {
+        margin-top: 25px;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service {
+        min-height: 240px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+
+      footer {
+        display: block;
+        line-height: 2;
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      .brand-name {
+        font-size: 14px;
+        letter-spacing: 3px;
+      }
+
+      .monogram {
+        width: 32px;
+        height: 32px;
+      }
+
+      .hero {
+        min-height: 92vh;
+      }
+
+      .hero h1 {
+        font-size: 57px;
+      }
+
+      .hero-subtitle {
+        font-size: 14px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        text-align: center;
+      }
+
+      .service {
+        padding: 30px;
+      }
+
+      .service h3 {
+        margin-top: 55px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+
+    <a href="#top" class="brand">
+      <div class="monogram">CI</div>
+      <div class="brand-name">CLEANIMANN</div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#about">Über uns</a></li>
+      <li><a href="#services">Leistungen</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+      <li>
+        <a class="nav-contact" href="#contact">
+          Anfrage
+        </a>
+      </li>
+    </ul>
+
+  </nav>
+
+
+  <!-- HERO -->
+  <main id="top">
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <div class="eyebrow">
+          Premium Services · Germany
+        </div>
+
+        <h1>
+          Beyond
+          <span>Clean.</span>
+        </h1>
+
+        <div class="hero-line"></div>
+
+        <p class="hero-subtitle">
+          Präzision, höchste Standards und kompromisslose Qualität.
+          CLEANIMANN definiert professionelle Dienstleistungen neu.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">
+            Anfrage starten
+          </a>
+
+          <a href="#services" class="btn btn-secondary">
+            Leistungen entdecken
+          </a>
+        </div>
+
+      </div>
+
+      <div class="hero-mark">
+        <div class="hero-ci">CI</div>
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="intro" id="about">
+
+      <div class="section-label">
+        The CLEANIMANN Standard
+      </div>
+
+      <h2>
+        Sauberkeit ist nur der Anfang.
+        <em>Excellence ist der Standard.</em>
+      </h2>
+
+      <p class="intro-text">
+        CLEANIMANN steht für eine neue Generation professioneller
+        Dienstleistungen. Präzise Prozesse, anspruchsvolle Standards
+        und ein kompromissloser Blick für Details schaffen Ergebnisse,
+        die man nicht nur sieht, sondern spürt.
+      </p>
+
+    </section>
+
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+
+      <div class="section-heading">
+
+        <div>
+          <div class="section-label">
+            Services
+          </div>
+
+          <h2>
+            Leistungen
+          </h2>
+        </div>
+
+        <p>
+          Von professioneller Reinigung bis zu umfassenden
+          Facility Services entwickeln wir unsere Leistungen
+          mit unseren Kunden weiter.
+        </p>
+
+      </div>
+
+
+      <div class="service-grid">
+
+        <article class="service">
+          <div class="service-number">01</div>
+          <h3>Reinigung</h3>
+          <p>
+            Professionelle Reinigung für private,
+            gewerbliche und anspruchsvolle Objekte.
+          </p>
+        </article>
+
+        <article class="service">
+          <div class="service-number">02</div>
+          <h3>Gebäudeservice</h3>
+          <p>
+            Ganzheitliche Dienstleistungen rund um
+            moderne Immobilien und Gebäude.
+          </p>
+        </article>
+
+        <article class="service">
+          <div class="service-number">03</div>
+          <h3>Hausmeisterservice</h3>
+          <p>
+            Zuverlässige Betreuung, Kontrolle und
+            Koordination Ihrer Immobilie.
+          </p>
+        </article>
+
+        <article class="service">
+          <div class="service-number">04</div>
+          <h3>Facility Services</h3>
+          <p>
+            Flexible Lösungen für Unternehmen,
+            Immobilien und anspruchsvolle Standorte.
+          </p>
+        </article>
+
+        <article class="service">
+          <div class="service-number">05</div>
+          <h3>Gartenpflege</h3>
+          <p>
+            Gepflegte Außenbereiche mit einem
+            konsequenten Blick für Details.
+          </p>
+        </article>
+
+        <article class="service">
+          <div class="service-number">06</div>
+          <h3>Winterdienst</h3>
+          <p>
+            Verlässliche Betreuung und Sicherheit
+            auch bei anspruchsvollen Wetterbedingungen.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- STATEMENT -->
+    <section class="statement">
+
+      <div class="statement-inner">
+
+        <div class="section-label">
+          Our Philosophy
+        </div>
+
+        <h2>
+          Precision.<br>
+          Standards.<br>
+          <span>Excellence.</span>
+        </h2>
+
+        <p>
+          Nicht einfach sauber.
+          Nicht einfach professionell.
+          Sondern auf einem anderen Niveau.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+
+      <div class="contact-grid">
+
+        <div>
+
+          <div class="section-label">
+            Contact
+          </div>
+
+          <h2>
+            Lassen Sie uns
+            etwas Besonderes
+            schaffen.
+          </h2>
+
+          <p class="contact-copy">
+            Sie möchten eine individuelle Anfrage stellen oder
+            mehr über unsere Leistungen erfahren?
+            Kontaktieren Sie CLEANIMANN.
+          </p>
+
+        </div>
+
+
+        <div class="contact-details">
+
+          <div class="contact-row">
+            <small>E-Mail</small>
+            <strong>hello@cleanimann.de</strong>
+          </div>
+
+          <div class="contact-row">
+            <small>Telefon</small>
+            <strong>+49 XXX XXXXXXX</strong>
+          </div>
+
+          <div class="contact-row">
+            <small>Standort</small>
+            <strong>Deutschland</strong>
+          </div>
+
+          <div class="contact-row">
+            <small>Business</small>
+            <strong>Premium Services</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div>
+      © 2026 CLEANIMANN
+    </div>
+
+    <div>
+      <span>BEYOND CLEAN.</span>
+    </div>
+
+    <div>
+      Germany
+    </div>
+
+  </footer>
+
+
+</body>
+</html>
