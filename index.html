@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="de">
+ <!DOCTYPE html>
+<html lang="de" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,6 +85,12 @@
       letter-spacing: 0;
     }
 
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+    }
+
     .nav-links {
       display: flex;
       gap: 34px;
@@ -99,6 +105,84 @@
     }
 
     .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    /* LANGUAGE SWITCHER */
+
+    .language {
+      position: relative;
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .language-button {
+      border: 1px solid rgba(184,155,94,.55);
+      background: transparent;
+      color: var(--white);
+      padding: 9px 13px;
+      cursor: pointer;
+      font: inherit;
+      letter-spacing: .12em;
+      transition: .25s ease;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .language-button:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .language-arrow {
+      font-size: 8px;
+      transition: transform .25s ease;
+    }
+
+    .language.open .language-arrow {
+      transform: rotate(180deg);
+    }
+
+    .language-menu {
+      position: absolute;
+      top: calc(100% + 9px);
+      right: 0;
+      min-width: 170px;
+      background: rgba(10,10,10,.98);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(20px);
+      padding: 7px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      transition: .25s ease;
+    }
+
+    .language.open .language-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .language-option {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      color: #d8d8d4;
+      padding: 11px 12px;
+      cursor: pointer;
+      text-align: left;
+      font: inherit;
+      font-size: 10px;
+      letter-spacing: .08em;
+      transition: .2s ease;
+    }
+
+    .language-option:hover,
+    .language-option.active {
+      background: rgba(184,155,94,.12);
       color: var(--gold);
     }
 
@@ -376,6 +460,30 @@
       text-transform: uppercase;
     }
 
+    /* RTL */
+
+    html[dir="rtl"] body {
+      text-align: right;
+    }
+
+    html[dir="rtl"] .language-menu {
+      right: auto;
+      left: 0;
+    }
+
+    html[dir="rtl"] .language-option {
+      text-align: right;
+    }
+
+    html[dir="rtl"] .intro-grid,
+    html[dir="rtl"] .contact-grid {
+      direction: rtl;
+    }
+
+    html[dir="rtl"] .hero-content {
+      text-align: right;
+    }
+
     /* MOBILE */
 
     @media (max-width: 800px) {
@@ -384,8 +492,16 @@
         padding: 20px 6vw;
       }
 
+      .nav-right {
+        gap: 12px;
+      }
+
       .nav-links {
         display: none;
+      }
+
+      .language-button {
+        padding: 8px 10px;
       }
 
       .hero {
@@ -433,62 +549,126 @@
 <body>
 
   <nav id="nav">
+
     <a href="#" class="brand">
       <span class="monogram">CI</span>
       CLEANIMANN
     </a>
 
-    <div class="nav-links">
-      <a href="#services">Leistungen</a>
-      <a href="#about">Über uns</a>
-      <a href="#contact">Kontakt</a>
+    <div class="nav-right">
+
+      <div class="nav-links">
+        <a href="#services" data-i18n="navServices">Leistungen</a>
+        <a href="#about" data-i18n="navAbout">Über uns</a>
+        <a href="#contact" data-i18n="navContact">Kontakt</a>
+      </div>
+
+      <!-- LANGUAGE SWITCHER -->
+      <div class="language" id="language">
+
+        <button
+          class="language-button"
+          id="languageButton"
+          type="button"
+          aria-expanded="false"
+        >
+          <span id="currentFlag">🇩🇪</span>
+          <span id="currentLanguage">DE</span>
+          <span class="language-arrow">▼</span>
+        </button>
+
+        <div class="language-menu">
+
+          <button class="language-option active" data-lang="de">
+            🇩🇪 DE — Deutsch
+          </button>
+
+          <button class="language-option" data-lang="en">
+            🇬🇧 EN — English
+          </button>
+
+          <button class="language-option" data-lang="fa">
+            🇮🇷 FA — فارسی
+          </button>
+
+          <button class="language-option" data-lang="uk">
+            🇺🇦 UK — Українська
+          </button>
+
+          <button class="language-option" data-lang="ru">
+            🇷🇺 RU — Русский
+          </button>
+
+        </div>
+      </div>
+
     </div>
   </nav>
 
+
   <main>
 
+    <!-- HERO -->
+
     <section class="hero">
+
       <div class="hero-content">
 
-        <div class="eyebrow">
+        <div class="eyebrow" data-i18n="eyebrow">
           Premium Services · Deutschland
         </div>
 
         <h1>
-          Beyond
+          <span class="hero-beyond">Beyond</span>
           <span>Clean.</span>
         </h1>
 
-        <p class="hero-text">
+        <p class="hero-text" data-i18n="heroText">
           Präzision, Standards und außergewöhnliche Sorgfalt.
           CLEANIMANN entwickelt Premium-Reinigungs- und
           Gebäudeservices für anspruchsvolle Räume.
         </p>
 
         <div class="hero-buttons">
-          <a href="#services" class="button primary">
+
+          <a
+            href="#services"
+            class="button primary"
+            data-i18n="servicesButton"
+          >
             Leistungen
           </a>
 
-          <a href="#contact" class="button">
+          <a
+            href="#contact"
+            class="button"
+            data-i18n="contactButton"
+          >
             Kontakt
           </a>
+
         </div>
 
       </div>
     </section>
 
 
+    <!-- ABOUT -->
+
     <section class="intro" id="about">
 
       <div class="intro-grid">
 
         <h2>
-          Clean is not
-          <span>enough.</span>
+          <span class="intro-main" data-i18n="introTitle">
+            Clean is not
+          </span>
+          <span data-i18n="introTitleGold">
+            enough.
+          </span>
         </h2>
 
-        <p>
+        <p data-i18n="introText">
           Wir glauben, dass professionelle Reinigung mehr ist
           als Sauberkeit. Es geht um Details, Verlässlichkeit,
           Diskretion und einen Standard, den man sehen und
@@ -500,13 +680,15 @@
     </section>
 
 
+    <!-- SERVICES -->
+
     <section class="services" id="services">
 
-      <div class="section-label">
+      <div class="section-label" data-i18n="servicesLabel">
         Unsere Leistungen
       </div>
 
-      <h2 class="section-title">
+      <h2 class="section-title" data-i18n="servicesTitle">
         Services.
       </h2>
 
@@ -514,8 +696,8 @@
 
         <article class="service">
           <div class="service-number">01</div>
-          <h3>Reinigung</h3>
-          <p>
+          <h3 data-i18n="service1Title">Reinigung</h3>
+          <p data-i18n="service1Text">
             Professionelle Reinigung für private,
             gewerbliche und anspruchsvolle Objekte.
           </p>
@@ -523,8 +705,8 @@
 
         <article class="service">
           <div class="service-number">02</div>
-          <h3>Gebäudeservice</h3>
-          <p>
+          <h3 data-i18n="service2Title">Gebäudeservice</h3>
+          <p data-i18n="service2Text">
             Ganzheitliche Betreuung und Pflege
             moderner Immobilien.
           </p>
@@ -532,8 +714,8 @@
 
         <article class="service">
           <div class="service-number">03</div>
-          <h3>Hausmeisterservice</h3>
-          <p>
+          <h3 data-i18n="service3Title">Hausmeisterservice</h3>
+          <p data-i18n="service3Text">
             Zuverlässige Betreuung, Kontrolle und
             technische Unterstützung.
           </p>
@@ -541,8 +723,8 @@
 
         <article class="service">
           <div class="service-number">04</div>
-          <h3>Facility Services</h3>
-          <p>
+          <h3 data-i18n="service4Title">Facility Services</h3>
+          <p data-i18n="service4Text">
             Strukturierte Services für Unternehmen,
             Gebäude und größere Anlagen.
           </p>
@@ -550,8 +732,8 @@
 
         <article class="service">
           <div class="service-number">05</div>
-          <h3>Gartenpflege</h3>
-          <p>
+          <h3 data-i18n="service5Title">Gartenpflege</h3>
+          <p data-i18n="service5Text">
             Gepflegte Außenbereiche mit konsequentem
             Qualitätsanspruch.
           </p>
@@ -559,8 +741,8 @@
 
         <article class="service">
           <div class="service-number">06</div>
-          <h3>Winterdienst</h3>
-          <p>
+          <h3 data-i18n="service6Title">Winterdienst</h3>
+          <p data-i18n="service6Text">
             Verlässliche Betreuung und Sicherheit
             während der Wintermonate.
           </p>
@@ -571,26 +753,30 @@
     </section>
 
 
+    <!-- STATEMENT -->
+
     <section class="statement">
 
       <h2>
-        Precision.
-        <span>Standards.</span>
-        Excellence.
+        <span class="statement-one">Precision.</span>
+        <span class="statement-two">Standards.</span>
+        <span class="statement-three">Excellence.</span>
       </h2>
 
     </section>
 
 
+    <!-- CONTACT -->
+
     <section class="contact" id="contact">
 
-      <div class="section-label">
+      <div class="section-label" data-i18n="contactLabel">
         Kontakt
       </div>
 
       <div class="contact-grid">
 
-        <h2>
+        <h2 data-i18n="contactTitle">
           Let's create
           something
           exceptional.
@@ -599,22 +785,22 @@
         <div class="contact-info">
 
           <div class="contact-item">
-            <small>Email</small>
+            <small data-i18n="emailLabel">Email</small>
             <a href="mailto:hello@cleanimann.de">
               hello@cleanimann.de
             </a>
           </div>
 
           <div class="contact-item">
-            <small>Telefon</small>
+            <small data-i18n="phoneLabel">Telefon</small>
             <span>
               +49 XXX XXXXXXX
             </span>
           </div>
 
           <div class="contact-item">
-            <small>Standort</small>
-            <span>
+            <small data-i18n="locationLabel">Standort</small>
+            <span data-i18n="locationValue">
               Deutschland
             </span>
           </div>
@@ -635,6 +821,9 @@
 
 
   <script>
+
+    /* NAVIGATION */
+
     const nav = document.getElementById("nav");
 
     window.addEventListener("scroll", () => {
@@ -644,6 +833,570 @@
         nav.classList.remove("scrolled");
       }
     });
+
+
+    /* LANGUAGE SYSTEM */
+
+    const translations = {
+
+      de: {
+        flag: "🇩🇪",
+        name: "DE",
+        direction: "ltr",
+
+        navServices: "Leistungen",
+        navAbout: "Über uns",
+        navContact: "Kontakt",
+
+        eyebrow: "Premium Services · Deutschland",
+
+        heroBeyond: "Beyond",
+
+        heroText:
+          "Präzision, Standards und außergewöhnliche Sorgfalt. CLEANIMANN entwickelt Premium-Reinigungs- und Gebäudeservices für anspruchsvolle Räume.",
+
+        servicesButton: "Leistungen",
+        contactButton: "Kontakt",
+
+        introTitle: "Clean is not",
+        introTitleGold: "enough.",
+
+        introText:
+          "Wir glauben, dass professionelle Reinigung mehr ist als Sauberkeit. Es geht um Details, Verlässlichkeit, Diskretion und einen Standard, den man sehen und spüren kann.",
+
+        servicesLabel: "Unsere Leistungen",
+        servicesTitle: "Services.",
+
+        service1Title: "Reinigung",
+        service1Text:
+          "Professionelle Reinigung für private, gewerbliche und anspruchsvolle Objekte.",
+
+        service2Title: "Gebäudeservice",
+        service2Text:
+          "Ganzheitliche Betreuung und Pflege moderner Immobilien.",
+
+        service3Title: "Hausmeisterservice",
+        service3Text:
+          "Zuverlässige Betreuung, Kontrolle und technische Unterstützung.",
+
+        service4Title: "Facility Services",
+        service4Text:
+          "Strukturierte Services für Unternehmen, Gebäude und größere Anlagen.",
+
+        service5Title: "Gartenpflege",
+        service5Text:
+          "Gepflegte Außenbereiche mit konsequentem Qualitätsanspruch.",
+
+        service6Title: "Winterdienst",
+        service6Text:
+          "Verlässliche Betreuung und Sicherheit während der Wintermonate.",
+
+        contactLabel: "Kontakt",
+
+        contactTitle:
+          "Let's create something exceptional.",
+
+        emailLabel: "Email",
+        phoneLabel: "Telefon",
+        locationLabel: "Standort",
+        locationValue: "Deutschland",
+
+        title:
+          "CLEANIMANN — Beyond Clean.",
+
+        description:
+          "CLEANIMANN — Premium-Reinigungs-, Gebäude- und Facility-Services. Präzision. Standards. Excellence."
+      },
+
+
+      en: {
+        flag: "🇬🇧",
+        name: "EN",
+        direction: "ltr",
+
+        navServices: "Services",
+        navAbout: "About Us",
+        navContact: "Contact",
+
+        eyebrow: "Premium Services · Germany",
+
+        heroText:
+          "Precision, standards and exceptional care. CLEANIMANN delivers premium cleaning and building services for sophisticated spaces.",
+
+        servicesButton: "Services",
+        contactButton: "Contact",
+
+        introTitle: "Clean is not",
+        introTitleGold: "enough.",
+
+        introText:
+          "We believe professional cleaning is about more than cleanliness. It is about detail, reliability, discretion and a standard that can be seen and felt.",
+
+        servicesLabel: "Our Services",
+        servicesTitle: "Services.",
+
+        service1Title: "Professional Cleaning",
+        service1Text:
+          "Professional cleaning for private, commercial and demanding properties.",
+
+        service2Title: "Building Services",
+        service2Text:
+          "Comprehensive care and maintenance for modern properties.",
+
+        service3Title: "Caretaker Services",
+        service3Text:
+          "Reliable property care, inspections and technical support.",
+
+        service4Title: "Facility Services",
+        service4Text:
+          "Structured services for companies, buildings and larger facilities.",
+
+        service5Title: "Garden Care",
+        service5Text:
+          "Well-maintained outdoor spaces with a consistent commitment to quality.",
+
+        service6Title: "Winter Services",
+        service6Text:
+          "Reliable winter maintenance and safety services throughout the winter season.",
+
+        contactLabel: "Contact",
+
+        contactTitle:
+          "Let's create something exceptional.",
+
+        emailLabel: "Email",
+        phoneLabel: "Phone",
+        locationLabel: "Location",
+        locationValue: "Germany",
+
+        title:
+          "CLEANIMANN — Beyond Clean.",
+
+        description:
+          "CLEANIMANN — Premium cleaning, building and facility services. Precision. Standards. Excellence."
+      },
+
+
+      fa: {
+        flag: "🇮🇷",
+        name: "FA",
+        direction: "rtl",
+
+        navServices: "خدمات",
+        navAbout: "درباره ما",
+        navContact: "تماس",
+
+        eyebrow: "خدمات ممتاز · آلمان",
+
+        heroText:
+          "دقت، استاندارد و مراقبتی فراتر از انتظار. CLEANIMANN خدمات حرفه‌ای نظافت و ساختمان را برای فضاهای ممتاز ارائه می‌دهد.",
+
+        servicesButton: "خدمات",
+        contactButton: "تماس",
+
+        introTitle: "تمیزی",
+        introTitleGold: "کافی نیست.",
+
+        introText:
+          "ما معتقدیم نظافت حرفه‌ای چیزی فراتر از تمیزی است؛ توجه به جزئیات، قابل‌اعتماد بودن، حفظ حریم خصوصی و استانداردی که دیده و احساس شود.",
+
+        servicesLabel: "خدمات ما",
+        servicesTitle: "خدمات.",
+
+        service1Title: "نظافت حرفه‌ای",
+        service1Text:
+          "نظافت حرفه‌ای برای املاک خصوصی، تجاری و فضاهای خاص.",
+
+        service2Title: "خدمات ساختمان",
+        service2Text:
+          "مراقبت و نگهداری جامع از ساختمان‌ها و املاک مدرن.",
+
+        service3Title: "خدمات سرایداری",
+        service3Text:
+          "مراقبت قابل‌اعتماد، کنترل و پشتیبانی فنی از ملک.",
+
+        service4Title: "خدمات مدیریت تأسیسات",
+        service4Text:
+          "خدمات سازمان‌یافته برای شرکت‌ها، ساختمان‌ها و مجموعه‌های بزرگ.",
+
+        service5Title: "نگهداری فضای سبز",
+        service5Text:
+          "نگهداری حرفه‌ای فضاهای بیرونی با استانداردی ثابت و دقیق.",
+
+        service6Title: "خدمات زمستانی",
+        service6Text:
+          "خدمات قابل‌اعتماد برای نگهداری و ایمنی در فصل زمستان.",
+
+        contactLabel: "تماس",
+
+        contactTitle:
+          "بیایید چیزی استثنایی خلق کنیم.",
+
+        emailLabel: "ایمیل",
+        phoneLabel: "تلفن",
+        locationLabel: "موقعیت",
+        locationValue: "آلمان",
+
+        title:
+          "CLEANIMANN — فراتر از تمیزی.",
+
+        description:
+          "CLEANIMANN — خدمات حرفه‌ای نظافت، ساختمان و مدیریت تأسیسات. دقت. استاندارد. برتری."
+      },
+
+
+      uk: {
+        flag: "🇺🇦",
+        name: "UK",
+        direction: "ltr",
+
+        navServices: "Послуги",
+        navAbout: "Про нас",
+        navContact: "Контакти",
+
+        eyebrow: "Преміальні послуги · Німеччина",
+
+        heroText:
+          "Точність, стандарти та виняткова турбота. CLEANIMANN надає преміальні послуги з прибирання та обслуговування будівель для вимогливих просторів.",
+
+        servicesButton: "Послуги",
+        contactButton: "Контакти",
+
+        introTitle: "Чистоти",
+        introTitleGold: "недостатньо.",
+
+        introText:
+          "Ми вважаємо, що професійне прибирання — це більше, ніж чистота. Це увага до деталей, надійність, конфіденційність і стандарт, який можна побачити та відчути.",
+
+        servicesLabel: "Наші послуги",
+        servicesTitle: "Послуги.",
+
+        service1Title: "Професійне прибирання",
+        service1Text:
+          "Професійне прибирання приватних, комерційних та вимогливих об’єктів.",
+
+        service2Title: "Обслуговування будівель",
+        service2Text:
+          "Комплексний догляд та обслуговування сучасної нерухомості.",
+
+        service3Title: "Послуги керуючого",
+        service3Text:
+          "Надійний догляд за нерухомістю, контроль та технічна підтримка.",
+
+        service4Title: "Facility Services",
+        service4Text:
+          "Структуровані послуги для компаній, будівель та великих об’єктів.",
+
+        service5Title: "Догляд за садами",
+        service5Text:
+          "Професійний догляд за відкритими територіями з постійним стандартом якості.",
+
+        service6Title: "Зимове обслуговування",
+        service6Text:
+          "Надійне обслуговування та забезпечення безпеки протягом зимового сезону.",
+
+        contactLabel: "Контакти",
+
+        contactTitle:
+          "Створімо разом щось виняткове.",
+
+        emailLabel: "Email",
+        phoneLabel: "Телефон",
+        locationLabel: "Розташування",
+        locationValue: "Німеччина",
+
+        title:
+          "CLEANIMANN — Beyond Clean.",
+
+        description:
+          "CLEANIMANN — преміальні послуги з прибирання, обслуговування будівель та facility management."
+      },
+
+
+      ru: {
+        flag: "🇷🇺",
+        name: "RU",
+        direction: "ltr",
+
+        navServices: "Услуги",
+        navAbout: "О нас",
+        navContact: "Контакты",
+
+        eyebrow: "Премиальные услуги · Германия",
+
+        heroText:
+          "Точность, стандарты и исключительная забота. CLEANIMANN предоставляет премиальные услуги по уборке и обслуживанию зданий для требовательных пространств.",
+
+        servicesButton: "Услуги",
+        contactButton: "Контакты",
+
+        introTitle: "Чистоты",
+        introTitleGold: "недостаточно.",
+
+        introText:
+          "Мы считаем, что профессиональная уборка — это больше, чем чистота. Это внимание к деталям, надежность, конфиденциальность и стандарт, который можно увидеть и почувствовать.",
+
+        servicesLabel: "Наши услуги",
+        servicesTitle: "Услуги.",
+
+        service1Title: "Профессиональная уборка",
+        service1Text:
+          "Профессиональная уборка частных, коммерческих и требовательных объектов.",
+
+        service2Title: "Обслуживание зданий",
+        service2Text:
+          "Комплексный уход и обслуживание современной недвижимости.",
+
+        service3Title: "Услуги управляющего",
+        service3Text:
+          "Надежный уход за объектом, контроль и техническая поддержка.",
+
+        service4Title: "Facility Services",
+        service4Text:
+          "Структурированные услуги для компаний, зданий и крупных объектов.",
+
+        service5Title: "Уход за садами",
+        service5Text:
+          "Профессиональный уход за открытыми территориями с постоянным стандартом качества.",
+
+        service6Title: "Зимнее обслуживание",
+        service6Text:
+          "Надежное обслуживание и обеспечение безопасности в зимний период.",
+
+        contactLabel: "Контакты",
+
+        contactTitle:
+          "Создадим вместе нечто исключительное.",
+
+        emailLabel: "Email",
+        phoneLabel: "Телефон",
+        locationLabel: "Расположение",
+        locationValue: "Германия",
+
+        title:
+          "CLEANIMANN — Beyond Clean.",
+
+        description:
+          "CLEANIMANN — премиальные услуги по уборке, обслуживанию зданий и facility management."
+      }
+
+    };
+
+
+    const language = document.getElementById("language");
+    const languageButton = document.getElementById("languageButton");
+    const languageOptions = document.querySelectorAll(".language-option");
+
+    const currentFlag = document.getElementById("currentFlag");
+    const currentLanguage = document.getElementById("currentLanguage");
+
+
+    languageButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+
+      const isOpen = language.classList.toggle("open");
+
+      languageButton.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
+      );
+    });
+
+
+    document.addEventListener("click", () => {
+      language.classList.remove("open");
+      languageButton.setAttribute("aria-expanded", "false");
+    });
+
+
+    languageOptions.forEach(option => {
+
+      option.addEventListener("click", (event) => {
+
+        event.stopPropagation();
+
+        const lang = option.dataset.lang;
+
+        setLanguage(lang);
+
+        language.classList.remove("open");
+
+        languageButton.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+      });
+
+    });
+
+
+    function setLanguage(lang) {
+
+      const data = translations[lang];
+
+      if (!data) return;
+
+      document.documentElement.lang = lang;
+      document.documentElement.dir = data.direction;
+
+      currentFlag.textContent = data.flag;
+      currentLanguage.textContent = data.name;
+
+      document.title = data.title;
+
+      document
+        .querySelector('meta[name="description"]')
+        .setAttribute("content", data.description);
+
+
+      document
+        .querySelectorAll("[data-i18n]")
+        .forEach(element => {
+
+          const key = element.dataset.i18n;
+
+          if (data[key] !== undefined) {
+            element.textContent = data[key];
+          }
+
+        });
+
+
+      /*
+       * Hero title
+       */
+
+      const heroBeyond = document.querySelector(".hero-beyond");
+
+      if (heroBeyond) {
+
+        if (lang === "de") {
+          heroBeyond.textContent = "Beyond";
+        }
+
+        if (lang === "en") {
+          heroBeyond.textContent = "Beyond";
+        }
+
+        if (lang === "fa") {
+          heroBeyond.textContent = "فراتر از";
+        }
+
+        if (lang === "uk") {
+          heroBeyond.textContent = "Поза";
+        }
+
+        if (lang === "ru") {
+          heroBeyond.textContent = "Больше чем";
+        }
+
+      }
+
+
+      /*
+       * Statement
+       */
+
+      const statementOne =
+        document.querySelector(".statement-one");
+
+      const statementTwo =
+        document.querySelector(".statement-two");
+
+      const statementThree =
+        document.querySelector(".statement-three");
+
+
+      if (lang === "de") {
+
+        statementOne.textContent = "Precision.";
+
+        statementTwo.textContent = "Standards.";
+
+        statementThree.textContent = "Excellence.";
+
+      }
+
+
+      if (lang === "en") {
+
+        statementOne.textContent = "Precision.";
+
+        statementTwo.textContent = "Standards.";
+
+        statementThree.textContent = "Excellence.";
+
+      }
+
+
+      if (lang === "fa") {
+
+        statementOne.textContent = "دقت.";
+
+        statementTwo.textContent = "استاندارد.";
+
+        statementThree.textContent = "برتری.";
+
+      }
+
+
+      if (lang === "uk") {
+
+        statementOne.textContent = "Точність.";
+
+        statementTwo.textContent = "Стандарти.";
+
+        statementThree.textContent = "Досконалість.";
+
+      }
+
+
+      if (lang === "ru") {
+
+        statementOne.textContent = "Точность.";
+
+        statementTwo.textContent = "Стандарты.";
+
+        statementThree.textContent = "Совершенство.";
+
+      }
+
+
+      /*
+       * Active language
+       */
+
+      languageOptions.forEach(item => {
+
+        item.classList.toggle(
+          "active",
+          item.dataset.lang === lang
+        );
+
+      });
+
+
+      /*
+       * Save selected language
+       */
+
+      localStorage.setItem(
+        "cleanimann-language",
+        lang
+      );
+
+    }
+
+
+    /*
+     * Load saved language
+     */
+
+    const savedLanguage =
+      localStorage.getItem("cleanimann-language") || "de";
+
+    setLanguage(savedLanguage);
+
   </script>
 
 </body>
