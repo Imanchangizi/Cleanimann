@@ -3,2928 +3,2749 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
 <title>CLEANIMANN — Beyond Clean.</title>
 <meta name="description" content="CLEANIMANN — Premium Cleaning, Facility Services and Property Care in Germany.">
+<meta name="theme-color" content="#050505">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 :root{
-  --black:#050505;
-  --black2:#0b0b0b;
-  --white:#f4f3ef;
-  --muted:#999;
-  --gold:#c9ad72;
-  --gold2:#e0ca98;
-  --line:rgba(255,255,255,.13);
-  --max:1440px;
+--black:#050505;
+--black2:#0b0b0b;
+--white:#f4f3ef;
+--muted:#aaa9a4;
+--gold:#c9ad72;
+--gold2:#e0ca98;
+--line:rgba(255,255,255,.13);
+--max:1440px
 }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
-html{
-  scroll-behavior:smooth;
-  background:var(--black);
-}
+html{scroll-behavior:smooth;background:var(--black)}
 
 body{
-  background:var(--black);
-  color:var(--white);
-  font-family:"Manrope",sans-serif;
-  overflow-x:hidden;
+background:var(--black);
+color:var(--white);
+font-family:"Manrope",sans-serif;
+overflow-x:hidden
 }
 
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-button{
-  font:inherit;
-}
-
-section{
-  position:relative;
-}
-
-.reveal{
-  opacity:0;
-  transform:translateY(28px);
-  transition:opacity .9s ease,transform .9s ease;
-}
-
-.reveal.visible{
-  opacity:1;
-  transform:none;
-}
-
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+img{display:block;max-width:100%}
 
 /* LOADER */
 
 .loader{
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  background:#050505;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:.8s ease;
+position:fixed;
+inset:0;
+z-index:9999;
+background:#050505;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:opacity .8s ease,visibility .8s ease
 }
 
-.loader.hide{
-  opacity:0;
-  visibility:hidden;
-}
+.loader.hide{opacity:0;visibility:hidden}
 
-.loader-inner{
-  text-align:center;
-}
+.loader-inner{text-align:center}
 
 .loader-logo{
-  font-size:24px;
-  font-weight:700;
-  letter-spacing:.28em;
+font-size:24px;
+letter-spacing:.28em;
+font-weight:700
 }
 
 .loader-line{
-  width:70px;
-  height:1px;
-  background:var(--gold);
-  margin:18px auto 0;
-  animation:loaderLine 1.4s ease infinite;
+width:70px;
+height:1px;
+background:var(--gold);
+margin:18px auto 0;
+animation:loaderLine 1.5s ease infinite
 }
 
 @keyframes loaderLine{
-  0%,100%{
-    transform:scaleX(.2);
-    opacity:.3;
-  }
-  50%{
-    transform:scaleX(1);
-    opacity:1;
-  }
+0%,100%{transform:scaleX(.2);opacity:.3}
+50%{transform:scaleX(1);opacity:1}
 }
-
 
 /* NAV */
 
 .nav{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:82px;
-  padding:0 42px;
-  z-index:1000;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  background:linear-gradient(to bottom,rgba(0,0,0,.7),transparent);
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:82px;
+padding:0 42px;
+z-index:1000;
+display:flex;
+align-items:center;
+justify-content:space-between;
+background:linear-gradient(to bottom,rgba(0,0,0,.65),rgba(0,0,0,0))
 }
 
 .brand{
-  font-size:22px;
-  font-weight:700;
-  letter-spacing:.16em;
-  transition:.3s;
+font-size:22px;
+line-height:1;
+font-weight:700;
+letter-spacing:.16em;
+color:#fff;
+transition:.3s ease
 }
 
-.brand:hover{
-  color:var(--gold2);
-}
+.brand:hover{color:var(--gold2)}
 
 .nav-right{
-  position:fixed;
-  top:20px;
-  right:42px;
-  z-index:1100;
-  display:flex;
-  align-items:center;
-  gap:28px;
-}
-
-.lang-wrap{
-  position:relative;
-  order:3;
-  flex:0 0 auto;
-}
-
-.lang-btn{
-  border:1px solid rgba(255,255,255,.35);
-  background:rgba(5,5,5,.55);
-  backdrop-filter:blur(14px);
-  color:#fff;
-  padding:10px 15px;
-  border-radius:3px;
-  font-size:12px;
-  font-weight:600;
-  letter-spacing:.08em;
-  cursor:pointer;
-  min-width:91px;
-  box-shadow:0 5px 25px rgba(0,0,0,.25);
-  white-space:nowrap;
-}
-
-.lang-btn span{
-  color:var(--gold2);
-  margin-left:5px;
-}
-
-.lang-menu{
-  position:absolute;
-  right:0;
-  top:calc(100% + 9px);
-  width:125px;
-  background:rgba(8,8,8,.96);
-  border:1px solid rgba(255,255,255,.2);
-  backdrop-filter:blur(18px);
-  opacity:0;
-  visibility:hidden;
-  transform:translateY(-7px);
-  transition:.25s ease;
-  padding:6px;
-}
-
-.lang-menu.open{
-  opacity:1;
-  visibility:visible;
-  transform:translateY(0);
-}
-
-.lang-menu button{
-  width:100%;
-  padding:10px 9px;
-  text-align:left;
-  background:none;
-  border:0;
-  color:#eee;
-  cursor:pointer;
-  font-size:12px;
-  letter-spacing:.08em;
-}
-
-.lang-menu button:hover{
-  background:rgba(255,255,255,.08);
-  color:var(--gold2);
+position:fixed;
+top:20px;
+right:42px;
+z-index:1100;
+display:flex;
+align-items:center;
+gap:28px
 }
 
 .nav-products-link{
-  order:1;
-  font-size:10px;
-  text-transform:uppercase;
-  letter-spacing:.16em;
-  color:#d8d8d8;
-  transition:.3s ease;
-}
-
-.nav-products-link:hover{
-  color:var(--gold2);
+order:1;
+font-size:11px;
+text-transform:uppercase;
+letter-spacing:.17em;
+font-weight:600;
+color:#fff;
+border-bottom:1px solid rgba(255,255,255,.5);
+padding-bottom:5px
 }
 
 .nav-cta{
-  order:2;
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.17em;
-  font-weight:600;
-  color:#fff;
-  border-bottom:1px solid rgba(255,255,255,.5);
-  padding-bottom:5px;
+order:2;
+font-size:11px;
+text-transform:uppercase;
+letter-spacing:.17em;
+font-weight:600;
+color:#fff;
+border-bottom:1px solid rgba(255,255,255,.5);
+padding-bottom:5px
 }
 
 .nav-right .nav-cta::after{
-  content:"";
-  display:inline-block;
-  width:1px;
-  height:14px;
-  margin-left:28px;
-  vertical-align:middle;
-  background:rgba(255,255,255,.18);
+content:"";
+display:inline-block;
+width:1px;
+height:14px;
+margin-left:28px;
+vertical-align:middle;
+background:rgba(255,255,255,.18)
 }
 
+.lang-wrap{
+position:relative;
+order:3
+}
+
+.lang-btn{
+border:1px solid rgba(255,255,255,.35);
+background:rgba(5,5,5,.55);
+backdrop-filter:blur(14px);
+color:#fff;
+padding:10px 15px;
+border-radius:3px;
+font-size:12px;
+font-weight:600;
+letter-spacing:.08em;
+cursor:pointer;
+min-width:91px;
+box-shadow:0 5px 25px rgba(0,0,0,.25)
+}
+
+.lang-btn span{
+color:var(--gold2);
+margin-left:5px
+}
+
+.lang-menu{
+position:absolute;
+right:0;
+top:calc(100% + 9px);
+width:125px;
+background:rgba(8,8,8,.96);
+border:1px solid rgba(255,255,255,.2);
+backdrop-filter:blur(18px);
+opacity:0;
+visibility:hidden;
+transform:translateY(-7px);
+transition:.25s ease;
+padding:6px
+}
+
+.lang-menu.open{
+opacity:1;
+visibility:visible;
+transform:translateY(0)
+}
+
+.lang-menu button{
+width:100%;
+padding:10px 9px;
+text-align:left;
+background:none;
+border:0;
+color:#eee;
+cursor:pointer;
+font-size:12px;
+letter-spacing:.08em
+}
+
+.lang-menu button:hover{
+background:rgba(255,255,255,.08);
+color:var(--gold2)
+}
+
+/* GLOBAL TYPE */
+
+.hero-eyebrow{font-size:12px!important;letter-spacing:.18em}
+
+.intro h2{font-size:clamp(42px,5.8vw,86px)}
+.products h2{font-size:clamp(40px,5.5vw,82px)}
+.method h2{font-size:clamp(40px,5.7vw,84px)}
+.split-content h2{font-size:clamp(40px,5.7vw,84px)}
+.contact h2{font-size:clamp(40px,5.8vw,86px)}
+
+.hero h1{
+font-size:clamp(40px,5.5vw,78px)
+}
 
 /* HERO */
 
 .hero{
-  min-height:100vh;
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  align-items:flex-end;
+min-height:100vh;
+position:relative;
+overflow:hidden;
+display:flex;
+align-items:flex-end
 }
 
 .hero-image{
-  position:absolute;
-  inset:0;
-  background-image:
-    linear-gradient(
-      90deg,
-      rgba(0,0,0,.78),
-      rgba(0,0,0,.28) 55%,
-      rgba(0,0,0,.18)
-    ),
-    url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2400&q=92");
-  background-size:cover;
-  background-position:center;
-  transform:scale(1.03);
-  animation:heroZoom 15s ease-out forwards;
-}
-
-.hero-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.9),transparent 65%);
+position:absolute;
+inset:0;
+background-image:
+linear-gradient(
+90deg,
+rgba(0,0,0,.74) 0%,
+rgba(0,0,0,.46) 34%,
+rgba(0,0,0,.12) 70%,
+rgba(0,0,0,.25) 100%
+),
+url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2400&q=92");
+background-size:cover;
+background-position:center;
+transform:scale(1.03);
+animation:heroZoom 16s ease-out forwards
 }
 
 @keyframes heroZoom{
-  from{
-    transform:scale(1.08);
-  }
-  to{
-    transform:scale(1.03);
-  }
+from{transform:scale(1.08)}
+to{transform:scale(1.03)}
+}
+
+.hero-overlay{
+position:absolute;
+inset:0;
+background:linear-gradient(
+to top,
+rgba(0,0,0,.82) 0%,
+rgba(0,0,0,.28) 48%,
+rgba(0,0,0,.05) 100%
+)
 }
 
 .hero-content{
-  position:relative;
-  z-index:2;
-  width:min(var(--max),100%);
-  margin:auto;
-  padding:0 7vw 8vh;
+position:relative;
+z-index:2;
+width:min(var(--max),100%);
+margin:auto;
+padding:0 7vw 8vh
 }
 
 .hero-eyebrow{
-  margin-bottom:24px;
-  font-family:"DM Mono",monospace;
-  color:var(--gold2);
-  font-size:9px;
-  letter-spacing:.2em;
-  text-transform:uppercase;
+font-family:"DM Mono",monospace;
+color:var(--gold2);
+text-transform:uppercase;
+letter-spacing:.18em;
+font-size:10px;
+margin-bottom:24px
 }
 
 .hero h1{
-  font-size:clamp(72px,11vw,170px);
-  line-height:.82;
-  letter-spacing:-.065em;
-  font-weight:500;
+line-height:.88;
+font-weight:500;
+letter-spacing:-.065em;
+max-width:1000px
 }
 
 .hero-beyond{
-  display:block;
-  font-weight:700;
+display:block;
+font-weight:700;
+font-style:normal;
+letter-spacing:-.055em
 }
 
 .hero-clean{
-  display:block;
-  color:var(--gold2);
-  font-family:Georgia,serif;
-  font-style:italic;
-  font-weight:400;
+display:block;
+color:var(--gold2);
+font-family:Georgia,"Times New Roman",serif;
+font-weight:400;
+font-style:italic;
+letter-spacing:-.07em;
+padding-left:.03em
 }
 
 .hero-copy{
-  max-width:550px;
-  margin-top:35px;
-  color:rgba(255,255,255,.78);
-  font-size:14px;
-  line-height:1.9;
+max-width:550px;
+margin-top:36px;
+color:rgba(255,255,255,.78);
+font-size:15px;
+line-height:1.8;
+font-weight:300
 }
 
 .hero-scroll{
-  display:inline-flex;
-  align-items:center;
-  gap:14px;
-  margin-top:42px;
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-  letter-spacing:.16em;
-  text-transform:uppercase;
+margin-top:45px;
+display:inline-flex;
+align-items:center;
+gap:14px;
+font-family:"DM Mono",monospace;
+font-size:9px;
+letter-spacing:.16em;
+text-transform:uppercase;
+color:#ddd
 }
 
 .hero-scroll-line{
-  width:48px;
-  height:1px;
-  background:var(--gold);
+width:48px;
+height:1px;
+background:var(--gold)
 }
 
+/* GENERAL */
 
-/* INTRO */
-
-.intro{
-  max-width:1200px;
-  margin:auto;
-  padding:150px 8vw;
-}
+section{position:relative}
 
 .section-kicker{
-  font-family:"DM Mono",monospace;
-  color:var(--gold2);
-  font-size:9px;
-  letter-spacing:.2em;
-  text-transform:uppercase;
+font-family:"DM Mono",monospace;
+color:var(--gold);
+font-size:9px;
+letter-spacing:.2em;
+text-transform:uppercase;
+margin-bottom:30px
+}
+
+.intro{
+padding:150px 8vw;
+max-width:1200px;
+margin:auto
 }
 
 .intro h2{
-  max-width:950px;
-  margin-top:30px;
-  font-size:clamp(45px,7vw,96px);
-  line-height:.98;
-  letter-spacing:-.055em;
-  font-weight:500;
+max-width:950px;
+line-height:.98;
+letter-spacing:-.055em;
+font-weight:500
 }
 
 .intro p{
-  max-width:620px;
-  margin-top:42px;
-  color:#999;
-  font-size:14px;
-  line-height:1.9;
+max-width:620px;
+margin-top:42px;
+color:#aaa;
+line-height:1.9;
+font-size:15px;
+font-weight:300
 }
-
 
 /* IMAGE BREAK */
 
 .image-break{
-  height:72vh;
-  min-height:520px;
-  overflow:hidden;
+height:72vh;
+min-height:550px;
+overflow:hidden
 }
 
 .break-image{
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(to bottom,rgba(0,0,0,.05),rgba(0,0,0,.45)),
-    url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2400&q=92");
-  background-size:cover;
-  background-position:center;
-  transition:1s;
+position:absolute;
+inset:0;
+background-image:
+linear-gradient(to bottom,rgba(0,0,0,.08),rgba(0,0,0,.35)),
+url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2400&q=92");
+background-size:cover;
+background-position:center;
+transition:transform 1s ease
 }
 
-.image-break:hover .break-image{
-  transform:scale(1.025);
-}
+.image-break:hover .break-image{transform:scale(1.025)}
 
 .break-caption{
-  position:absolute;
-  left:7vw;
-  bottom:40px;
-  font-family:"DM Mono",monospace;
-  font-size:10px;
-  letter-spacing:.16em;
+position:absolute;
+bottom:40px;
+left:7vw;
+font-family:"DM Mono",monospace;
+font-size:10px;
+letter-spacing:.16em;
+text-transform:uppercase;
+color:#fff;
+white-space:nowrap
 }
-
 
 /* STANDARD */
 
 .standard{
-  padding:150px 8vw;
-  background:#090909;
+background:#090909;
+padding:130px 7vw
 }
 
-.standard-header{
-  max-width:900px;
-  margin-bottom:90px;
+.standard-inner{
+max-width:var(--max);
+margin:auto
 }
 
-.standard h2{
-  margin-top:30px;
-  font-size:clamp(50px,7vw,100px);
-  line-height:.95;
-  letter-spacing:-.06em;
-  font-weight:500;
+.standard-head{
+display:flex;
+justify-content:space-between;
+align-items:flex-end;
+gap:40px;
+margin-bottom:80px
+}
+
+.standard-head h2{
+font-size:clamp(42px,6vw,88px);
+line-height:.95;
+letter-spacing:-.06em;
+font-weight:500
+}
+
+.standard-intro{
+max-width:410px;
+font-size:14px;
+line-height:1.9;
+color:#999
 }
 
 .standard-grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  border-top:1px solid var(--line);
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:24px
 }
 
 .standard-item{
-  min-height:220px;
-  padding:30px 22px 30px 0;
-  border-right:1px solid var(--line);
+position:relative;
+overflow:hidden;
+border-top:1px solid rgba(255,255,255,.16);
+padding-top:0
 }
 
-.standard-item:not(:first-child){
-  padding-left:22px;
+.standard-thumb{
+width:100%;
+height:118px;
+margin-bottom:24px;
+background-position:center;
+background-size:cover;
+filter:saturate(.55) contrast(1.04);
+opacity:.78;
+transition:transform .7s ease,filter .7s ease,opacity .7s ease
+}
+
+.standard-item:hover .standard-thumb{
+transform:scale(1.035);
+filter:saturate(.8) contrast(1.06);
+opacity:1
+}
+
+.standard-item-01 .standard-thumb{
+background-image:
+linear-gradient(90deg,rgba(0,0,0,.18),rgba(0,0,0,.02)),
+url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=88")
+}
+
+.standard-item-02 .standard-thumb{
+background-image:
+linear-gradient(90deg,rgba(0,0,0,.18),rgba(0,0,0,.02)),
+url("https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=88")
+}
+
+.standard-item-03 .standard-thumb{
+background-image:
+linear-gradient(90deg,rgba(0,0,0,.18),rgba(0,0,0,.02)),
+url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=88")
+}
+
+.standard-item-04 .standard-thumb{
+background-image:
+linear-gradient(90deg,rgba(0,0,0,.18),rgba(0,0,0,.02)),
+url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=88")
+}
+
+.standard-item-05 .standard-thumb{
+background-image:
+linear-gradient(90deg,rgba(0,0,0,.18),rgba(0,0,0,.02)),
+url("https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=88")
 }
 
 .standard-number{
-  font-family:"DM Mono",monospace;
-  color:var(--gold);
-  font-size:10px;
+font-family:"DM Mono",monospace;
+font-size:10px;
+color:var(--gold);
+margin-bottom:24px
 }
 
 .standard-item h3{
-  margin-top:70px;
-  font-size:18px;
-  font-weight:500;
+font-size:20px;
+font-weight:500;
+letter-spacing:-.03em;
+margin-bottom:14px
 }
 
 .standard-item p{
-  margin-top:15px;
-  color:#777;
-  font-size:12px;
-  line-height:1.8;
+font-size:12px;
+line-height:1.8;
+color:#888
 }
-
 
 /* SERVICES */
 
 .services{
-  padding:150px 8vw;
+padding:150px 7vw;
+background:var(--black)
+}
+
+.services-inner{
+max-width:var(--max);
+margin:auto
 }
 
 .services-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:40px;
-  margin-bottom:85px;
+display:grid;
+grid-template-columns:1.1fr .9fr;
+gap:80px;
+align-items:end;
+margin-bottom:80px
 }
 
-.services h2{
-  margin-top:30px;
-  font-size:clamp(55px,8vw,110px);
-  line-height:.9;
-  letter-spacing:-.06em;
-  font-weight:500;
+.services-head h2{
+font-size:clamp(44px,6vw,92px);
+line-height:.92;
+letter-spacing:-.065em;
+font-weight:500
 }
 
 .services-intro{
-  max-width:300px;
-  color:#888;
-  font-size:13px;
-  line-height:1.8;
+max-width:440px;
+font-size:14px;
+line-height:1.9;
+color:#999
 }
 
-.service-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  border-top:1px solid var(--line);
+.services-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:2px;
+background:rgba(255,255,255,.12)
 }
 
 .service-card{
-  position:relative;
-  min-height:500px;
-  overflow:hidden;
-  display:flex;
-  align-items:flex-end;
-  border-bottom:1px solid var(--line);
-}
-
-.service-card:nth-child(odd){
-  border-right:1px solid var(--line);
+position:relative;
+height:520px;
+overflow:hidden;
+background:#111
 }
 
 .service-bg{
-  position:absolute;
-  inset:0;
-  background-size:cover;
-  background-position:center;
-  transition:1s;
+position:absolute;
+inset:0;
+background-size:cover;
+background-position:center;
+transition:transform 1s cubic-bezier(.2,.7,.2,1),filter 1s ease
+}
+
+.service-card::after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.05) 65%)
 }
 
 .service-card:hover .service-bg{
-  transform:scale(1.035);
+transform:scale(1.045)
+}
+
+.service-cleaning-card .service-bg{
+background-image:
+linear-gradient(115deg,rgba(0,0,0,.76),rgba(0,0,0,.08) 50%,rgba(0,0,0,.62)),
+url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=94");
+background-position:center;
+background-size:cover;
+filter:saturate(.82) contrast(1.04)
 }
 
 .service-card:nth-child(2) .service-bg{
-  background-image:
-    linear-gradient(to top,rgba(0,0,0,.8),rgba(0,0,0,.08)),
-    url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=90");
+background-image:
+linear-gradient(115deg,rgba(0,0,0,.7),rgba(0,0,0,.15)),
+url("https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=2000&q=92")
 }
 
 .service-card:nth-child(3) .service-bg{
-  background-image:
-    linear-gradient(to top,rgba(0,0,0,.82),rgba(0,0,0,.08)),
-    url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=88");
+background-image:
+linear-gradient(115deg,rgba(0,0,0,.72),rgba(0,0,0,.1)),
+url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=2000&q=92")
 }
 
 .service-card:nth-child(4) .service-bg{
-  background-image:
-    linear-gradient(to top,rgba(0,0,0,.82),rgba(0,0,0,.05)),
-    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=88");
+background-image:
+linear-gradient(115deg,rgba(0,0,0,.72),rgba(0,0,0,.1)),
+url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=92")
 }
 
 .service-content{
-  position:relative;
-  z-index:2;
-  padding:40px;
-  width:100%;
+position:absolute;
+left:42px;
+right:42px;
+bottom:38px;
+z-index:3
 }
 
-.service-number{
-  font-family:"DM Mono",monospace;
-  color:var(--gold2);
-  font-size:10px;
+.service-index{
+font-family:"DM Mono",monospace;
+font-size:10px;
+color:var(--gold2);
+margin-bottom:18px
 }
 
-.service-title{
-  margin-top:20px;
-  font-size:clamp(32px,4vw,60px);
-  line-height:.95;
-  letter-spacing:-.04em;
-  font-weight:500;
+.service-card h3{
+font-size:clamp(30px,3vw,48px);
+font-weight:500;
+letter-spacing:-.055em;
+margin-bottom:15px
 }
 
-.service-description{
-  margin-top:18px;
-  max-width:420px;
-  font-size:12px;
-  color:#ccc;
-  line-height:1.8;
+.service-card p{
+max-width:480px;
+font-size:13px;
+line-height:1.8;
+color:rgba(255,255,255,.72)
 }
 
-
-/* PRODUCTS */
-
-.products{
-  background:#080808;
-  padding:150px 8vw;
-  border-top:1px solid var(--line);
-}
-
-.products-inner{
-  max-width:var(--max);
-  margin:auto;
-}
-
-.products-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:30px;
-  margin-bottom:75px;
-}
-
-.products h2{
-  font-size:clamp(55px,7vw,105px);
-  line-height:.88;
-  letter-spacing:-.065em;
-  font-weight:500;
-}
-
-.products-status{
-  font-family:"DM Mono",monospace;
-  color:var(--gold);
-  font-size:9px;
-  letter-spacing:.18em;
-  border:1px solid rgba(201,173,114,.45);
-  padding:12px 15px;
-}
-
-.products-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-}
-
-.product-placeholder{
-  min-height:380px;
-  padding:35px;
-  position:relative;
-  background:linear-gradient(145deg,#151515,#090909);
-  border-right:1px solid var(--line);
-  overflow:hidden;
-}
-
-.product-placeholder-dark{
-  border-right:0;
-  background:linear-gradient(145deg,#0b0b0b,#030303);
-}
-
-.product-index{
-  font-family:"DM Mono",monospace;
-  color:var(--gold);
-  font-size:9px;
-}
-
-.product-symbol{
-  position:absolute;
-  right:35px;
-  top:28px;
-  font-size:68px;
-  line-height:1;
-  font-weight:700;
-  letter-spacing:-.08em;
-  color:rgba(255,255,255,.08);
-}
-
-.product-placeholder h3{
-  position:absolute;
-  left:35px;
-  bottom:75px;
-  font-size:27px;
-  font-weight:500;
-  letter-spacing:-.035em;
-}
-
-.product-placeholder p{
-  position:absolute;
-  left:35px;
-  bottom:32px;
-  max-width:430px;
-  color:#777;
-  font-size:11px;
-  line-height:1.8;
-}
-
-
-/* CLEANING BRAND SWEEP */
-
-.service-cleaning-card{
-  cursor:pointer;
-  outline:none;
-  isolation:isolate;
-}
-
-.service-cleaning-card:focus-visible{
-  box-shadow:inset 0 0 0 1px var(--gold2);
-}
-
-
-/* NEW MODERN CLEANING IMAGE */
-
-.service-cleaning-card .service-bg{
-  background-image:
-    linear-gradient(
-      115deg,
-      rgba(0,0,0,.76),
-      rgba(0,0,0,.08) 50%,
-      rgba(0,0,0,.62)
-    ),
-    url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=94");
-  background-position:center;
-  background-size:cover;
-  filter:saturate(.82) contrast(1.04);
-}
-
-.service-cleaning-card:hover .service-bg{
-  transform:scale(1.045);
-  filter:saturate(.9) contrast(1.06);
-}
+/* CLEANING SWEEP */
 
 .cleaning-sweep{
-  position:absolute;
-  inset:0;
-  z-index:5;
-  pointer-events:none;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  opacity:0;
-  transition:opacity .35s ease;
-}
-
-.service-cleaning-card.active .cleaning-sweep{
-  opacity:1;
+position:absolute;
+inset:0;
+z-index:5;
+pointer-events:none;
+opacity:0
 }
 
 .cleaning-center-logo{
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%) scale(.7);
-  display:flex;
-  align-items:center;
-  gap:15px;
-  color:#fff;
-  opacity:0;
-  filter:drop-shadow(0 8px 24px rgba(0,0,0,.45));
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%) scale(.72);
+display:flex;
+align-items:center;
+gap:14px;
+font-weight:700;
+letter-spacing:.18em;
+color:#fff;
+opacity:0
 }
 
-.service-cleaning-card.active .cleaning-center-logo{
-  animation:cleanLogoAppear .65s cubic-bezier(.2,.8,.2,1) forwards;
+.cleaning-center-logo .ci-mark{
+width:42px;
+height:42px;
+display:grid;
+place-items:center;
+border:1px solid rgba(255,255,255,.7);
+font-size:13px;
+letter-spacing:-.05em
 }
 
-.ci-mark{
-  font-size:54px;
-  line-height:1;
-  font-weight:700;
-  letter-spacing:-.1em;
-}
-
-.ci-word{
-  font-size:17px;
-  letter-spacing:.2em;
-  font-weight:700;
-}
-
-
-/* HAND BROOM */
-
-.broom{
-  position:absolute;
-  width:190px;
-  height:205px;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%) rotate(-34deg);
-  opacity:0;
-  filter:drop-shadow(0 16px 24px rgba(0,0,0,.55));
-}
-
-.service-cleaning-card.active .broom{
-  animation:broomSweep 2.25s cubic-bezier(.4,0,.2,1) .45s forwards;
-}
-
-.broom-handle{
-  position:absolute;
-  width:9px;
-  height:150px;
-  right:38px;
-  top:0;
-  border-radius:8px;
-  background:linear-gradient(
-    90deg,
-    #7d6741,
-    #e2c98e 50%,
-    #6d5838
-  );
-  transform:rotate(-2deg);
-}
-
-.broom-head{
-  position:absolute;
-  width:75px;
-  height:22px;
-  right:7px;
-  bottom:28px;
-  border-radius:5px 5px 11px 11px;
-  background:linear-gradient(#d9c291,#9c7c45);
-  transform:rotate(2deg);
-}
-
-.broom-bristles{
-  position:absolute;
-  width:92px;
-  height:70px;
-  right:-2px;
-  bottom:-19px;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #ded1b0 0 4px,
-      #8f7b57 4px 6px
-    );
-  clip-path:polygon(8% 0,100% 0,85% 100%,0 100%);
-  transform:rotate(3deg);
-  border-radius:0 0 12px 12px;
-}
-
-@keyframes cleanLogoAppear{
-  0%{
-    opacity:0;
-    transform:translate(-50%,-50%) scale(.55);
-  }
-
-  60%{
-    opacity:1;
-    transform:translate(-50%,-50%) scale(1.04);
-  }
-
-  100%{
-    opacity:1;
-    transform:translate(-50%,-50%) scale(1);
-  }
+.cleaning-center-logo .ci-word{
+font-size:17px
 }
 
 .cleaning-center-logo.fly-to-brand{
-  position:fixed;
-  left:0;
-  top:0;
-  z-index:1200;
-  margin:0;
-  transform:
-    translate(
-      calc(var(--from-x) - 50%),
-      calc(var(--from-y) - 50%)
-    )
-    scale(1);
-
-  animation:
-    logoToBrand
-    1.15s
-    cubic-bezier(.22,.75,.18,1)
-    forwards !important;
+animation:logoToBrand .9s cubic-bezier(.2,.8,.2,1) forwards
 }
 
-@keyframes logoToBrand{
+.broom{
+position:absolute;
+width:210px;
+height:230px;
+right:-240px;
+top:46%;
+transform:rotate(-24deg);
+filter:drop-shadow(0 22px 24px rgba(0,0,0,.45));
+opacity:0
+}
 
-  0%{
-    opacity:1;
-    transform:
-      translate(
-        calc(var(--from-x) - 50%),
-        calc(var(--from-y) - 50%)
-      )
-      scale(1);
-  }
+.broom-handle{
+position:absolute;
+width:8px;
+height:205px;
+right:52px;
+top:0;
+border-radius:10px;
+background:linear-gradient(to right,#b7b7b7,#f1f1f1,#777)
+}
 
-  65%{
-    opacity:1;
-    transform:
-      translate(
-        calc(var(--to-x) - 50%),
-        calc(var(--to-y) - 50%)
-      )
-      scale(.55);
-  }
+.broom-head{
+position:absolute;
+right:15px;
+bottom:7px;
+width:92px;
+height:38px;
+border-radius:5px 5px 10px 10px;
+background:linear-gradient(135deg,#e7e2d7,#aaa39a);
+box-shadow:0 8px 14px rgba(0,0,0,.3)
+}
 
-  100%{
-    opacity:0;
-    transform:
-      translate(
-        calc(var(--to-x) - 50%),
-        calc(var(--to-y) - 50%)
-      )
-      scale(.34);
-  }
+.broom-bristles{
+position:absolute;
+right:6px;
+bottom:-4px;
+width:110px;
+height:30px;
+background:repeating-linear-gradient(
+90deg,
+#c9ad72 0,
+#c9ad72 3px,
+#f0dfb7 3px,
+#f0dfb7 6px
+);
+clip-path:polygon(0 0,100% 0,88% 100%,12% 100%)
+}
+
+.cleaning-card.active .cleaning-sweep{
+animation:sweepLayer 3.4s ease forwards
+}
+
+.cleaning-card.active .cleaning-center-logo{
+animation:cleanLogoAppear 1s cubic-bezier(.2,.8,.2,1) .15s forwards
+}
+
+.cleaning-card.active .broom{
+animation:broomSweep 1.35s cubic-bezier(.55,.05,.25,.95) .65s forwards
+}
+
+@keyframes sweepLayer{
+0%{opacity:1}
+90%{opacity:1}
+100%{opacity:0}
+}
+
+@keyframes cleanLogoAppear{
+0%{opacity:0;transform:translate(-50%,-50%) scale(.7)}
+30%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+70%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+100%{opacity:1;transform:translate(-50%,-50%) scale(1)}
 }
 
 @keyframes broomSweep{
-
-  0%{
-    opacity:0;
-    transform:
-      translate(-50%,-50%)
-      rotate(-38deg)
-      scale(.85);
-  }
-
-  15%{
-    opacity:1;
-  }
-
-  55%{
-    opacity:1;
-    transform:
-      translate(0,-10%)
-      rotate(-28deg)
-      scale(1);
-  }
-
-  78%{
-    opacity:1;
-    transform:
-      translate(55%,-5%)
-      rotate(-18deg)
-      scale(.9);
-  }
-
-  100%{
-    opacity:0;
-    transform:
-      translate(115%,-62%)
-      rotate(-4deg)
-      scale(.68);
-  }
+0%{right:-240px;top:42%;opacity:0}
+15%{opacity:1}
+70%{right:42%;top:47%;opacity:1}
+100%{right:105%;top:53%;opacity:0}
 }
 
-.service-cleaning-card.active .service-content{
-  animation:cleaningContentReveal 2.4s ease forwards;
+@keyframes logoToBrand{
+0%{
+position:fixed;
+left:var(--from-x);
+top:var(--from-y);
+transform:translate(-50%,-50%) scale(1);
+opacity:1
 }
-
-@keyframes cleaningContentReveal{
-
-  0%,65%{
-    opacity:.1;
-    transform:translateY(10px);
-  }
-
-  100%{
-    opacity:1;
-    transform:translateY(0);
-  }
+100%{
+position:fixed;
+left:var(--to-x);
+top:var(--to-y);
+transform:translate(-50%,-50%) scale(.18);
+opacity:0
 }
-
+}
 
 /* METHOD */
 
 .method{
-  padding:150px 8vw;
-  background:#f0eee8;
-  color:#111;
+background:#f0eee8;
+color:#080808;
+padding:150px 7vw
 }
 
-.method .section-kicker{
-  color:#8d7040;
+.method-inner{
+max-width:var(--max);
+margin:auto
+}
+
+.method .section-kicker{color:#857047}
+
+.method-head{
+display:flex;
+justify-content:space-between;
+align-items:end;
+gap:70px;
+margin-bottom:90px
 }
 
 .method h2{
-  max-width:1000px;
-  font-size:clamp(55px,8vw,110px);
-  line-height:.9;
-  letter-spacing:-.065em;
-  font-weight:500;
-  margin-bottom:90px;
+line-height:.92;
+letter-spacing:-.065em;
+font-weight:500
+}
+
+.method-lead{
+max-width:420px;
+font-size:14px;
+line-height:1.9;
+color:#5e5c57
 }
 
 .method-grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  border-top:1px solid rgba(0,0,0,.2);
+display:grid;
+grid-template-columns:repeat(5,1fr);
+border-top:1px solid rgba(0,0,0,.18)
 }
 
 .method-item{
-  min-height:200px;
-  padding:28px 20px 20px 0;
-  border-right:1px solid rgba(0,0,0,.15);
+padding:34px 24px 0 0;
+border-right:1px solid rgba(0,0,0,.12);
+min-height:220px
 }
 
-.method-item:not(:first-child){
-  padding-left:20px;
-}
+.method-item:not(:first-child){padding-left:24px}
+
+.method-item:last-child{border-right:0}
 
 .method-num{
-  font-family:"DM Mono",monospace;
-  color:#8d7040;
-  font-size:10px;
+font-family:"DM Mono",monospace;
+font-size:10px;
+color:#867044;
+margin-bottom:34px
 }
 
 .method-item h3{
-  margin-top:55px;
-  font-size:18px;
+font-size:18px;
+font-weight:600;
+margin-bottom:15px;
+letter-spacing:-.03em
 }
 
 .method-item p{
-  margin-top:12px;
-  color:#666;
-  font-size:12px;
-  line-height:1.7;
+font-size:12px;
+line-height:1.85;
+color:#66635d
 }
-
 
 /* SPLIT */
 
-.split-section{
-  min-height:750px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
+.split{
+display:grid;
+grid-template-columns:1fr 1fr;
+min-height:720px
 }
 
 .split-image{
-  min-height:650px;
-  background:
-    linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.25)),
-    url("https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1800&q=90");
-  background-size:cover;
-  background-position:center;
+background-image:
+linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.15)),
+url("https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1800&q=92");
+background-size:cover;
+background-position:center
 }
 
 .split-content{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:9vw;
-  background:#050505;
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding:100px 9vw;
+background:#0b0b0b
 }
 
+.split-content .section-kicker{margin-bottom:28px}
+
 .split-content h2{
-  margin-top:30px;
-  font-size:clamp(55px,7vw,100px);
-  line-height:.9;
-  letter-spacing:-.065em;
+line-height:.95;
+letter-spacing:-.065em;
+font-weight:500
 }
 
 .split-content p{
-  max-width:470px;
-  margin-top:40px;
-  color:#929292;
-  font-size:14px;
-  line-height:1.9;
+max-width:530px;
+margin-top:38px;
+font-size:14px;
+line-height:1.95;
+color:#999
 }
 
-.split-line{
-  width:55px;
-  height:1px;
-  margin-top:50px;
-  background:var(--gold);
+/* PRODUCTS */
+
+.products{
+background:#080808;
+padding:140px 7vw;
+border-top:1px solid rgba(255,255,255,.08)
 }
 
+.products-inner{
+max-width:var(--max);
+margin:auto
+}
+
+.products-top{
+display:flex;
+justify-content:space-between;
+align-items:flex-end;
+gap:40px;
+margin-bottom:70px
+}
+
+.products h2{
+line-height:.92;
+letter-spacing:-.065em;
+font-weight:500
+}
+
+.products-status{
+font-family:"DM Mono",monospace;
+font-size:10px;
+letter-spacing:.18em;
+color:var(--gold2);
+border:1px solid rgba(201,173,114,.4);
+padding:12px 15px
+}
+
+.products-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:2px;
+background:rgba(255,255,255,.12)
+}
+
+.product-placeholder{
+min-height:370px;
+padding:45px;
+background:#111;
+position:relative;
+overflow:hidden
+}
+
+.product-placeholder::before{
+content:"";
+position:absolute;
+inset:0;
+background:radial-gradient(circle at 80% 20%,rgba(201,173,114,.08),transparent 35%)
+}
+
+.product-placeholder-dark{
+background:#0d0d0d
+}
+
+.product-index{
+font-family:"DM Mono",monospace;
+font-size:10px;
+color:var(--gold);
+position:relative
+}
+
+.product-symbol{
+font-size:68px;
+font-weight:300;
+letter-spacing:-.08em;
+color:rgba(255,255,255,.15);
+position:absolute;
+right:42px;
+top:30px
+}
+
+.product-placeholder h3{
+font-size:30px;
+font-weight:500;
+letter-spacing:-.04em;
+margin-top:140px;
+position:relative
+}
+
+.product-placeholder p{
+max-width:430px;
+font-size:13px;
+line-height:1.85;
+color:#858585;
+margin-top:16px;
+position:relative
+}
 
 /* CAREER */
 
-.career-section{
-  padding:100px 8vw;
-  background:#090909;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
+.career{
+padding:130px 7vw;
+background:#080808;
+border-top:1px solid rgba(255,255,255,.08)
 }
 
 .career-inner{
-  max-width:var(--max);
-  margin:auto;
+max-width:var(--max);
+margin:auto;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:80px;
+align-items:end
 }
 
-.career-title{
-  margin-top:28px;
-  font-size:clamp(28px,3vw,42px);
-  font-weight:500;
+.career h2{
+font-size:clamp(50px,7vw,105px);
+line-height:.88;
+font-weight:500;
+letter-spacing:-.07em
 }
 
-.career-copy{
-  max-width:520px;
-  margin-top:20px;
-  color:#777;
-  font-size:12px;
-  line-height:1.8;
+.career-text{
+max-width:450px;
+font-size:14px;
+line-height:1.9;
+color:#999
 }
 
 .career-link{
-  display:inline-block;
-  margin-top:25px;
-  color:var(--gold2);
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
+display:inline-flex;
+margin-top:30px;
+font-size:11px;
+text-transform:uppercase;
+letter-spacing:.17em;
+border-bottom:1px solid rgba(255,255,255,.45);
+padding-bottom:7px
 }
-
 
 /* CONTACT */
 
 .contact{
-  padding:150px 8vw;
-  text-align:center;
-  background:#f0eee8;
-  color:#111;
+background:#f0eee8;
+color:#080808;
+padding:145px 7vw
 }
 
-.contact .section-kicker{
-  color:#8d7040;
+.contact-inner{
+max-width:var(--max);
+margin:auto
 }
+
+.contact .section-kicker{color:#857047}
 
 .contact h2{
-  margin-top:30px;
-  font-size:clamp(55px,8vw,110px);
-  line-height:.9;
-  letter-spacing:-.065em;
-  font-weight:500;
+line-height:.9;
+letter-spacing:-.07em;
+font-weight:500
+}
+
+.contact-bottom{
+display:flex;
+justify-content:space-between;
+align-items:flex-end;
+gap:60px;
+margin-top:90px;
+padding-top:30px;
+border-top:1px solid rgba(0,0,0,.15)
 }
 
 .contact-email{
-  display:inline-block;
-  margin-top:50px;
-  font-size:clamp(18px,2vw,28px);
-  border-bottom:1px solid #222;
-  padding-bottom:7px;
+font-size:clamp(22px,3vw,42px);
+letter-spacing:-.04em;
+font-weight:500
 }
 
 .contact-small{
-  margin-top:25px;
-  color:#777;
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-  letter-spacing:.15em;
-  text-transform:uppercase;
+font-family:"DM Mono",monospace;
+font-size:10px;
+letter-spacing:.14em;
+text-transform:uppercase;
+color:#68655e
 }
-
 
 /* FOOTER */
 
 footer{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr 1fr;
-  gap:20px;
-  padding:45px 7vw;
-  background:#050505;
-  color:#777;
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-  letter-spacing:.1em;
-  text-transform:uppercase;
+padding:38px 42px;
+background:#050505;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:30px;
+font-family:"DM Mono",monospace;
+font-size:9px;
+letter-spacing:.14em;
+color:#686868;
+text-transform:uppercase
 }
 
-.footer-monogram{
-  color:white;
-  font-size:24px;
-  font-weight:700;
+.footer-brand{
+color:#fff;
+font-family:"Manrope",sans-serif;
+font-size:13px;
+font-weight:700;
+letter-spacing:.16em
 }
 
+/* REVEAL */
+
+.reveal{
+opacity:0;
+transform:translateY(28px);
+transition:opacity .9s ease,transform .9s ease
+}
+
+.reveal.visible{
+opacity:1;
+transform:translateY(0)
+}
 
 /* PERSIAN */
 
+html[lang="fa"]{
+--fa-font:"Noto Sans Arabic","Tahoma",sans-serif
+}
+
 html[lang="fa"] body{
-  font-family:"Noto Sans Arabic","Tahoma",sans-serif;
+font-family:var(--fa-font);
+font-weight:400;
+letter-spacing:0
+}
+
+html[lang="fa"] .nav-right{
+direction:rtl
 }
 
 html[lang="fa"] .hero h1{
-  font-family:"Noto Sans Arabic","Tahoma",sans-serif;
-  font-size:clamp(42px,5.6vw,88px);
-  line-height:1.05;
-  letter-spacing:-.055em;
-  white-space:nowrap;
+font-family:var(--fa-font);
+font-size:clamp(38px,5.1vw,76px);
+line-height:1.08;
+letter-spacing:-.055em;
+font-weight:500;
+max-width:none;
+white-space:nowrap
 }
 
 html[lang="fa"] .hero-beyond,
 html[lang="fa"] .hero-clean{
-  display:inline;
-  font-family:"Noto Sans Arabic","Tahoma",sans-serif;
-  font-style:normal;
-  font-weight:500;
+display:inline;
+font-family:var(--fa-font);
+font-style:normal;
+font-weight:500;
+letter-spacing:-.055em
 }
 
-html[lang="fa"] .hero-copy,
-html[lang="fa"] .service-description,
+html[lang="fa"] .hero-clean{
+color:var(--gold2)
+}
+
+html[lang="fa"] .hero-copy{
+font-size:13px;
+line-height:2
+}
+
+html[lang="fa"] .intro h2,
+html[lang="fa"] .services-head h2,
+html[lang="fa"] .method h2,
+html[lang="fa"] .split-content h2,
+html[lang="fa"] .contact h2,
+html[lang="fa"] .products h2{
+font-family:var(--fa-font);
+letter-spacing:-.045em;
+line-height:1.15
+}
+
+html[lang="fa"] .intro p,
+html[lang="fa"] .services-intro,
+html[lang="fa"] .service-card p,
 html[lang="fa"] .standard-item p,
 html[lang="fa"] .method-item p,
-html[lang="fa"] .career-copy{
-  font-size:12px;
-  line-height:2;
-}
-
-html[lang="fa"] .intro h2{
-  font-size:clamp(34px,4.8vw,68px);
-  line-height:1.15;
+html[lang="fa"] .split-content p,
+html[lang="fa"] .career-text{
+font-size:12px;
+line-height:2
 }
 
 html[lang="fa"] .break-caption{
-  right:7vw;
-  left:auto;
-  white-space:nowrap;
-  font-size:14px;
-  letter-spacing:0;
+left:auto;
+right:7vw;
+font-family:var(--fa-font);
+font-size:14px;
+letter-spacing:0;
+text-transform:none
 }
 
-html[lang="fa"] .method h2{
-  white-space:nowrap;
-  font-size:clamp(36px,5vw,70px);
+html[lang="fa"] .hero-eyebrow,
+html[lang="fa"] .section-kicker{
+font-family:var(--fa-font);
+letter-spacing:0;
+font-size:10px!important
 }
 
-html[lang="fa"] .contact-email{
-  direction:ltr;
+html[lang="fa"] .products-status,
+html[lang="fa"] .standard-number,
+html[lang="fa"] .method-num,
+html[lang="fa"] .service-index{
+font-family:var(--fa-font);
+letter-spacing:0
 }
 
+html[lang="fa"] .contact-small,
+html[lang="fa"] .career-link{
+font-family:var(--fa-font);
+letter-spacing:0
+}
 
-/* RESPONSIVE */
+/* ALL LANGUAGE MICRO TYPE SCALE */
+
+.hero-copy,
+.intro p,
+.services-intro,
+.standard-item p,
+.service-card p,
+.method-item p,
+.split-content p,
+.career-text{
+font-size:13px
+}
+
+.break-caption{
+font-size:10px
+}
+
+.contact-small{
+font-size:11px
+}
+
+/* MOBILE */
 
 @media(max-width:900px){
 
-  .nav{
-    padding:0 25px;
-  }
-
-  .nav-right{
-    top:16px;
-    right:25px;
-    gap:18px;
-  }
-
-  .nav-products-link{
-    display:none;
-  }
-
-  .nav-right .nav-cta::after{
-    margin-left:18px;
-  }
-
-  .image-break{
-    height:55vh;
-    min-height:420px;
-  }
-
-  .standard-grid,
-  .method-grid{
-    grid-template-columns:1fr;
-  }
-
-  .standard-item,
-  .method-item{
-    min-height:auto;
-    padding:28px 0!important;
-    border-right:0;
-    border-bottom:1px solid var(--line);
-  }
-
-  .standard-item h3,
-  .method-item h3{
-    margin-top:30px;
-  }
-
-  .services-head{
-    display:block;
-    margin-bottom:55px;
-  }
-
-  .services-intro{
-    margin-top:30px;
-  }
-
-  .service-grid{
-    grid-template-columns:1fr;
-  }
-
-  .service-card{
-    min-height:450px;
-  }
-
-  .service-card:nth-child(odd){
-    border-right:0;
-  }
-
-  .products-grid{
-    grid-template-columns:1fr;
-  }
-
-  .product-placeholder{
-    border-right:0;
-    border-bottom:1px solid var(--line);
-  }
-
-  .split-section{
-    grid-template-columns:1fr;
-  }
-
-  .split-image{
-    min-height:500px;
-  }
-
-  .split-content{
-    padding:90px 25px;
-  }
-
-  .career-section{
-    padding:75px 25px;
-  }
-
-  .career-title{
-    font-size:28px;
-  }
-
-  .contact{
-    padding:110px 25px;
-  }
-
-  footer{
-    grid-template-columns:1fr 1fr;
-    padding:45px 25px;
-  }
-
-  .footer-monogram{
-    grid-column:1/-1;
-  }
+.nav{
+padding:0 22px;
+height:72px
 }
 
+.brand{font-size:18px}
+
+.nav-right{
+top:17px;
+right:22px;
+gap:17px
+}
+
+.nav-products-link,
+.nav-cta{
+font-size:9px;
+letter-spacing:.12em
+}
+
+.nav-right .nav-cta::after{
+margin-left:17px
+}
+
+.lang-btn{
+font-size:10px;
+padding:8px 10px;
+min-width:74px
+}
+
+.hero-content{
+padding:0 7vw 9vh
+}
+
+.hero h1{
+font-size:clamp(54px,11vw,100px)
+}
+
+.hero-copy{
+font-size:13px;
+max-width:480px
+}
+
+.intro{
+padding:100px 7vw
+}
+
+.intro h2{
+font-size:clamp(40px,9vw,68px)
+}
+
+.image-break{
+height:55vh;
+min-height:430px
+}
+
+.standard{
+padding:100px 7vw
+}
+
+.standard-head{
+display:block;
+margin-bottom:60px
+}
+
+.standard-intro{
+margin-top:25px
+}
+
+.standard-grid{
+grid-template-columns:repeat(2,1fr);
+gap:40px 20px
+}
+
+.services{
+padding:100px 7vw
+}
+
+.services-head{
+display:block;
+margin-bottom:55px
+}
+
+.services-intro{
+margin-top:25px
+}
+
+.services-grid{
+grid-template-columns:1fr
+}
+
+.service-card{
+height:450px
+}
+
+.method{
+padding:100px 7vw
+}
+
+.method-head{
+display:block;
+margin-bottom:60px
+}
+
+.method-lead{
+margin-top:25px
+}
+
+.method-grid{
+grid-template-columns:1fr 1fr
+}
+
+.method-item{
+border-bottom:1px solid rgba(0,0,0,.12);
+padding-bottom:30px
+}
+
+.method-item:nth-child(3),
+.method-item:nth-child(5){
+border-right:0
+}
+
+.split{
+grid-template-columns:1fr;
+min-height:auto
+}
+
+.split-image{
+height:500px
+}
+
+.split-content{
+padding:90px 7vw
+}
+
+.products{
+padding:100px 7vw
+}
+
+.products-top{
+display:block
+}
+
+.products-status{
+display:inline-block;
+margin-top:28px
+}
+
+.products-grid{
+grid-template-columns:1fr
+}
+
+.career{
+padding:100px 7vw
+}
+
+.career-inner{
+grid-template-columns:1fr;
+gap:45px
+}
+
+.contact{
+padding:100px 7vw
+}
+
+.contact-bottom{
+display:block;
+margin-top:60px
+}
+
+.contact-small{
+margin-top:25px
+}
+
+footer{
+padding:30px 22px;
+flex-direction:column;
+align-items:flex-start
+}
+
+html[lang="fa"] .hero h1{
+font-size:clamp(32px,7vw,60px)
+}
+
+html[lang="fa"] .break-caption{
+font-size:13px
+}
+}
 
 @media(max-width:500px){
 
-  .nav{
-    height:70px;
-    padding:0 18px;
-  }
-
-  .nav-right{
-    top:13px;
-    right:18px;
-  }
-
-  .nav-cta{
-    display:none;
-  }
-
-  .hero h1{
-    font-size:58px;
-  }
-
-  html[lang="fa"] .hero h1{
-    font-size:48px;
-  }
-
-  .hero-copy{
-    font-size:12px;
-    line-height:1.8;
-  }
-
-  .service-card{
-    min-height:400px;
-  }
-
-  .service-content{
-    padding:28px;
-  }
-
-  .service-title{
-    font-size:34px;
-  }
-
-  .products-top{
-    display:block;
-  }
-
-  .products-status{
-    display:inline-block;
-    margin-top:25px;
-  }
-
-  footer{
-    grid-template-columns:1fr;
-  }
+.nav{
+padding:0 16px
 }
 
+.nav-right{
+right:16px;
+gap:11px
+}
+
+.nav-products-link{
+display:none
+}
+
+.nav-right .nav-cta::after{
+margin-left:11px
+}
+
+.hero h1{
+font-size:clamp(48px,13vw,72px)
+}
+
+.hero-copy{
+font-size:12px;
+line-height:1.85
+}
+
+.hero-scroll{
+margin-top:30px
+}
+
+.intro{
+padding:80px 6vw
+}
+
+.intro h2{
+font-size:clamp(34px,10vw,55px)
+}
+
+.image-break{
+height:48vh;
+min-height:350px
+}
+
+.break-caption{
+left:6vw;
+font-size:8px
+}
+
+.standard{
+padding:80px 6vw
+}
+
+.standard-grid{
+grid-template-columns:1fr;
+gap:35px
+}
+
+.standard-thumb{
+height:145px
+}
+
+.services{
+padding:80px 6vw
+}
+
+.services-head h2{
+font-size:clamp(38px,11vw,58px)
+}
+
+.service-card{
+height:390px
+}
+
+.service-content{
+left:25px;
+right:25px;
+bottom:28px
+}
+
+.service-card h3{
+font-size:32px
+}
+
+.method{
+padding:80px 6vw
+}
+
+.method-grid{
+grid-template-columns:1fr
+}
+
+.method-item,
+.method-item:not(:first-child){
+padding:25px 0;
+border-right:0
+}
+
+.split-image{
+height:380px
+}
+
+.split-content{
+padding:75px 6vw
+}
+
+.products{
+padding:80px 6vw
+}
+
+.product-placeholder{
+padding:30px;
+min-height:320px
+}
+
+.product-placeholder h3{
+margin-top:120px;
+font-size:25px
+}
+
+.career{
+padding:80px 6vw
+}
+
+.contact{
+padding:80px 6vw
+}
+
+.contact h2{
+font-size:clamp(42px,12vw,65px)
+}
+
+html[lang="fa"] .hero h1{
+font-size:clamp(27px,8vw,48px);
+white-space:nowrap
+}
+
+html[lang="fa"] .hero-copy{
+font-size:11px
+}
+
+html[lang="fa"] .intro h2,
+html[lang="fa"] .services-head h2,
+html[lang="fa"] .method h2,
+html[lang="fa"] .split-content h2,
+html[lang="fa"] .contact h2,
+html[lang="fa"] .products h2{
+font-size:clamp(31px,8vw,48px)
+}
+
+html[lang="fa"] .break-caption{
+font-size:12px;
+white-space:nowrap
+}
+}
 </style>
 </head>
 
 <body>
 
 <div class="loader" id="loader">
-
-  <div class="loader-inner">
-
-    <div class="loader-logo">
-      CLEANIMANN
-    </div>
-
-    <div class="loader-line"></div>
-
-  </div>
-
+<div class="loader-inner">
+<div class="loader-logo">CLEANIMANN</div>
+<div class="loader-line"></div>
 </div>
-
+</div>
 
 <header class="nav">
 
-  <a href="#top" class="brand">
-    CLEANIMANN
-  </a>
+<a href="#" class="brand">CLEANIMANN</a>
 
-  <div class="nav-right">
+<div class="nav-right">
 
-    <a href="#products"
-       class="nav-products-link"
-       data-i18n="navProducts">
-      Products
-    </a>
+<a href="#products" class="nav-products-link" data-i18n="navProducts">Products</a>
 
-    <a href="#contact"
-       class="nav-cta"
-       data-i18n="navContact">
-      Kontakt
-    </a>
+<a href="#contact" class="nav-cta" data-i18n="navContact">Contact</a>
 
-    <div class="lang-wrap">
+<div class="lang-wrap">
 
-      <button class="lang-btn" id="langBtn">
-        🇩🇪 DE <span>▾</span>
-      </button>
+<button class="lang-btn" id="langBtn">
+🇩🇪 DE <span>▾</span>
+</button>
 
-      <div class="lang-menu" id="langMenu">
+<div class="lang-menu" id="langMenu">
+<button data-lang="de">🇩🇪 DE — Deutsch</button>
+<button data-lang="en">🇬🇧 EN — English</button>
+<button data-lang="fa">🇮🇷 FA — فارسی</button>
+<button data-lang="uk">🇺🇦 UK — Українська</button>
+<button data-lang="ru">🇷🇺 RU — Русский</button>
+</div>
 
-        <button data-lang="de">🇩🇪 DE</button>
-        <button data-lang="en">🇬🇧 EN</button>
-        <button data-lang="fa">🇮🇷 FA</button>
-        <button data-lang="uk">🇺🇦 UK</button>
-        <button data-lang="ru">🇷🇺 RU</button>
+</div>
 
-      </div>
-
-    </div>
-
-  </div>
-
+</div>
 </header>
 
-
-<main id="top">
-
+<main>
 
 <section class="hero">
 
-  <div class="hero-image"></div>
-  <div class="hero-overlay"></div>
+<div class="hero-image"></div>
+<div class="hero-overlay"></div>
 
-  <div class="hero-content reveal">
+<div class="hero-content reveal">
 
-    <div class="hero-eyebrow"
-         data-i18n="heroEyebrow">
-      Premium Services · Deutschland
-    </div>
+<div class="hero-eyebrow" data-i18n="heroEyebrow">
+Premium Services · Deutschland
+</div>
 
-    <h1>
+<h1>
+<span class="hero-beyond" data-i18n="heroBeyond">Beyond</span>
+<span class="hero-clean" data-i18n="heroClean">clean.</span>
+</h1>
 
-      <span class="hero-beyond"
-            data-i18n="heroBeyond">
-        Mehr als
-      </span>
+<p class="hero-copy" data-i18n="heroCopy">
+Premium cleaning, building services and property care for spaces where quality should be felt.
+</p>
 
-      <span class="hero-clean"
-            data-i18n="heroClean">
-        Sauberkeit.
-      </span>
+<a href="#intro" class="hero-scroll">
+<span class="hero-scroll-line"></span>
+<span data-i18n="scroll">Explore</span>
+</a>
 
-    </h1>
-
-    <p class="hero-copy"
-       data-i18n="heroCopy">
-      Premium Reinigung, Gebäudeservice und Property Care für Räume,
-      in denen Qualität sichtbar sein soll.
-    </p>
-
-    <a href="#intro" class="hero-scroll">
-
-      <span class="hero-scroll-line"></span>
-
-      <span data-i18n="scroll">
-        Entdecken
-      </span>
-
-    </a>
-
-  </div>
+</div>
 
 </section>
-
 
 <section class="intro reveal" id="intro">
 
-  <div class="section-kicker"
-       data-i18n="introKicker">
-    THE BEGINNING
-  </div>
+<div class="section-kicker" data-i18n="introKicker">THE BEGINNING</div>
 
-  <h2 data-i18n="introTitle">
-    Sauberkeit ist nur der Anfang.
-  </h2>
+<h2 data-i18n="introTitle">
+Cleanliness is only the beginning.
+</h2>
 
-  <p data-i18n="introText">
-    CLEANIMANN steht für eine neue Generation professioneller
-    Reinigung und Gebäudeservices. Wir verbinden Präzision,
-    Diskretion und konsequente Qualität mit einem Anspruch,
-    der weit über klassische Reinigung hinausgeht.
-  </p>
+<p data-i18n="introText">
+CLEANIMANN represents a new generation of professional cleaning and building services. We combine precision, discretion and consistency with a standard that goes far beyond ordinary cleaning.
+</p>
 
 </section>
-
 
 <section class="image-break">
 
-  <div class="break-image"></div>
+<div class="break-image"></div>
 
-  <div class="break-caption"
-       data-i18n="breakCaption">
-    Spaces that matter.
-  </div>
+<div class="break-caption" data-i18n="breakCaption">
+Spaces that matter.
+</div>
 
 </section>
-
 
 <section class="standard">
 
-  <div class="standard-header reveal">
+<div class="standard-inner">
 
-    <div class="section-kicker">
-      THE CLEANIMANN STANDARD
-    </div>
+<div class="standard-head reveal">
 
-    <h2 data-i18n="standardTitle">
-      The CLEANIMANN Standard.
-    </h2>
+<div>
+<div class="section-kicker" data-i18n="standardKicker">
+THE STANDARD
+</div>
 
-  </div>
+<h2 data-i18n="standardTitle">
+The CLEANIMANN<br>Standard.
+</h2>
+</div>
 
-  <div class="standard-grid reveal">
+<p class="standard-intro" data-i18n="standardIntro">
+Every detail matters. Every process has a purpose. Every space deserves a higher standard.
+</p>
 
-    <div class="standard-item">
+</div>
 
-      <div class="standard-number">01</div>
+<div class="standard-grid">
 
-      <h3 data-i18n="standard1Title">
-        Präzision
-      </h3>
+<article class="standard-item standard-item-01 reveal">
+<div class="standard-thumb"></div>
+<div class="standard-number">01</div>
+<h3 data-i18n="standard1Title">Precision</h3>
+<p data-i18n="standard1Text">
+Every process follows clear standards and attention to detail.
+</p>
+</article>
 
-      <p data-i18n="standard1Text">
-        Jeder Ablauf folgt klaren Standards und höchster Detailgenauigkeit.
-      </p>
+<article class="standard-item standard-item-02 reveal">
+<div class="standard-thumb"></div>
+<div class="standard-number">02</div>
+<h3 data-i18n="standard2Title">Discretion</h3>
+<p data-i18n="standard2Text">
+A discreet service designed for private and professional spaces.
+</p>
+</article>
 
-    </div>
+<article class="standard-item standard-item-03 reveal">
+<div class="standard-thumb"></div>
+<div class="standard-number">03</div>
+<h3 data-i18n="standard3Title">Reliability</h3>
+<p data-i18n="standard3Text">
+Reliable processes, clear standards and transparent communication.
+</p>
+</article>
 
-    <div class="standard-item">
+<article class="standard-item standard-item-04 reveal">
+<div class="standard-thumb"></div>
+<div class="standard-number">04</div>
+<h3 data-i18n="standard4Title">Consistency</h3>
+<p data-i18n="standard4Text">
+Quality that remains high not only today, but every day.
+</p>
+</article>
 
-      <div class="standard-number">02</div>
+<article class="standard-item standard-item-05 reveal">
+<div class="standard-thumb"></div>
+<div class="standard-number">05</div>
+<h3 data-i18n="standard5Title">Excellence</h3>
+<p data-i18n="standard5Text">
+A standard that turns a service into an experience.
+</p>
+</article>
 
-      <h3 data-i18n="standard2Title">
-        Diskretion
-      </h3>
-
-      <p data-i18n="standard2Text">
-        Unauffälliger Service für private und geschäftliche Räume.
-      </p>
-
-    </div>
-
-    <div class="standard-item">
-
-      <div class="standard-number">03</div>
-
-      <h3 data-i18n="standard3Title">
-        Zuverlässigkeit
-      </h3>
-
-      <p data-i18n="standard3Text">
-        Verlässliche Abläufe, feste Standards und klare Kommunikation.
-      </p>
-
-    </div>
-
-    <div class="standard-item">
-
-      <div class="standard-number">04</div>
-
-      <h3 data-i18n="standard4Title">
-        Konsistenz
-      </h3>
-
-      <p data-i18n="standard4Text">
-        Qualität, die nicht nur heute, sondern dauerhaft überzeugt.
-      </p>
-
-    </div>
-
-    <div class="standard-item">
-
-      <div class="standard-number">05</div>
-
-      <h3 data-i18n="standard5Title">
-        Exzellenz
-      </h3>
-
-      <p data-i18n="standard5Text">
-        Ein Anspruch, der aus Service eine Erfahrung macht.
-      </p>
-
-    </div>
-
-  </div>
+</div>
+</div>
 
 </section>
-
 
 <section class="services" id="services">
 
-  <div class="services-head reveal">
+<div class="services-inner">
 
-    <div>
+<div class="services-head reveal">
 
-      <div class="section-kicker"
-           data-i18n="servicesKicker">
-        OUR SERVICES
-      </div>
+<div>
+<div class="section-kicker" data-i18n="servicesKicker">
+OUR SERVICES
+</div>
 
-      <h2 data-i18n="servicesTitle">
-        Property care.<br>
-        Elevated.
-      </h2>
+<h2 data-i18n="servicesTitle">
+Property care.<br>At a higher level.
+</h2>
+</div>
 
-    </div>
+<p class="services-intro" data-i18n="servicesIntro">
+From premium cleaning to complete building services — CLEANIMANN takes a holistic approach to property care.
+</p>
 
-    <p class="services-intro"
-       data-i18n="servicesIntro">
-      Von hochwertiger Reinigung bis zu umfassenden
-      Gebäudeservices — CLEANIMANN betreut Immobilien
-      mit einem ganzheitlichen Anspruch.
-    </p>
+</div>
 
-  </div>
+<div class="services-grid">
 
+<article class="service-card service-cleaning-card reveal" id="cleaningCard" tabindex="0" role="button" aria-expanded="false">
 
-  <div class="service-grid reveal">
+<div class="service-bg"></div>
 
+<div class="cleaning-sweep" aria-hidden="true">
 
-    <!-- CLEANING -->
+<div class="cleaning-center-logo">
+<span class="ci-mark">CI</span>
+<span class="ci-word">CLEANIMANN</span>
+</div>
 
-    <article class="service-card service-cleaning-card"
-             id="cleaningCard"
-             tabindex="0"
-             role="button"
-             aria-expanded="false">
+<div class="broom">
+<div class="broom-handle"></div>
+<div class="broom-head"></div>
+<div class="broom-bristles"></div>
+</div>
 
-      <div class="service-bg"></div>
+</div>
 
+<div class="service-content">
 
-      <div class="cleaning-sweep"
-           aria-hidden="true">
+<div class="service-index">01</div>
 
-        <div class="cleaning-center-logo">
+<h3 data-i18n="service1Title">Cleaning</h3>
 
-          <span class="ci-mark">
-            CI
-          </span>
+<p data-i18n="service1Text">
+Premium cleaning for private residences, hotels, offices and high-end properties.
+</p>
 
-          <span class="ci-word">
-            CLEANIMANN
-          </span>
+</div>
 
-        </div>
+</article>
 
+<article class="service-card reveal">
 
-        <div class="broom">
+<div class="service-bg"></div>
 
-          <div class="broom-handle"></div>
+<div class="service-content">
 
-          <div class="broom-head"></div>
+<div class="service-index">02</div>
 
-          <div class="broom-bristles"></div>
+<h3 data-i18n="service2Title">Building Services</h3>
 
-        </div>
+<p data-i18n="service2Text">
+Professional property care with clear standards and reliable processes.
+</p>
 
-      </div>
+</div>
 
+</article>
 
-      <div class="service-content">
+<article class="service-card reveal">
 
-        <div class="service-number">
-          01
-        </div>
+<div class="service-bg"></div>
 
-        <div class="service-title"
-             data-i18n="service1Title">
-          Reinigung
-        </div>
+<div class="service-content">
 
-        <p class="service-description"
-           data-i18n="service1Text">
-          Premium Reinigung für private Residenzen,
-          Hotels, Büros und anspruchsvolle Immobilien.
-        </p>
+<div class="service-index">03</div>
 
-      </div>
+<h3 data-i18n="service3Title">Facility Services</h3>
 
-    </article>
+<p data-i18n="service3Text">
+Integrated services for modern commercial and premium properties.
+</p>
 
+</div>
 
-    <!-- BUILDING SERVICES -->
+</article>
 
-    <article class="service-card">
+<article class="service-card reveal">
 
-      <div class="service-bg"></div>
+<div class="service-bg"></div>
 
-      <div class="service-content">
+<div class="service-content">
 
-        <div class="service-number">
-          02
-        </div>
+<div class="service-index">04</div>
 
-        <div class="service-title"
-             data-i18n="service2Title">
-          Gebäudeservice
-        </div>
+<h3 data-i18n="service4Title">Exterior Care</h3>
 
-        <p class="service-description"
-           data-i18n="service2Text">
-          Professionelle Betreuung von Immobilien
-          mit klaren Standards und zuverlässigen Abläufen.
-        </p>
+<p data-i18n="service4Text">
+Care for entrances, grounds, gardens and seasonal winter services.
+</p>
 
-      </div>
+</div>
 
-    </article>
+</article>
 
+</div>
 
-    <!-- FACILITY SERVICES -->
-
-    <article class="service-card">
-
-      <div class="service-bg"></div>
-
-      <div class="service-content">
-
-        <div class="service-number">
-          03
-        </div>
-
-        <div class="service-title"
-             data-i18n="service3Title">
-          Facility Services
-        </div>
-
-        <p class="service-description"
-           data-i18n="service3Text">
-          Ganzheitliche Services für moderne Gewerbe-
-          und Premiumimmobilien.
-        </p>
-
-      </div>
-
-    </article>
-
-
-    <!-- OUTDOOR -->
-
-    <article class="service-card">
-
-      <div class="service-bg"></div>
-
-      <div class="service-content">
-
-        <div class="service-number">
-          04
-        </div>
-
-        <div class="service-title"
-             data-i18n="service4Title">
-          Außenbereiche
-        </div>
-
-        <p class="service-description"
-           data-i18n="service4Text">
-          Gepflegte Eingänge, Außenflächen,
-          Gartenbereiche und Winterdienst.
-        </p>
-
-      </div>
-
-    </article>
-
-
-  </div>
+</div>
 
 </section>
-
-
-<!-- PRODUCTS -->
-
-<section class="products" id="products">
-
-  <div class="products-inner reveal">
-
-    <div class="products-top">
-
-      <div>
-
-        <div class="section-kicker"
-             data-i18n="productsKicker">
-          PRODUCTS
-        </div>
-
-        <h2 data-i18n="productsTitle">
-          CLEANIMANN<br>
-          Objects.
-        </h2>
-
-      </div>
-
-      <div class="products-status"
-           data-i18n="productsStatus">
-        COMING SOON
-      </div>
-
-    </div>
-
-
-    <div class="products-grid">
-
-      <div class="product-placeholder">
-
-        <div class="product-index">
-          01
-        </div>
-
-        <div class="product-symbol">
-          CI
-        </div>
-
-        <h3 data-i18n="product1Title">
-          Selected Essentials
-        </h3>
-
-        <p data-i18n="product1Text">
-          Ausgewählte Produkte für Pflege, Ordnung und den
-          CLEANIMANN Standard — später direkt online erhältlich.
-        </p>
-
-      </div>
-
-
-      <div class="product-placeholder product-placeholder-dark">
-
-        <div class="product-index">
-          02
-        </div>
-
-        <div class="product-symbol">
-          +
-        </div>
-
-        <h3 data-i18n="product2Title">
-          Future Collection
-        </h3>
-
-        <p data-i18n="product2Text">
-          Eine kuratierte Kollektion für Räume, die sich
-          genauso gut anfühlen sollen, wie sie aussehen.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
 
 <section class="method">
 
-  <div class="reveal">
+<div class="method-inner">
 
-    <div class="section-kicker">
-      THE METHOD
-    </div>
+<div class="method-head reveal">
 
-    <h2 data-i18n="methodTitle">
-      Designed around<br>
-      precision.
-    </h2>
+<div>
 
-  </div>
+<div class="section-kicker" data-i18n="methodKicker">
+THE METHOD
+</div>
 
+<h2 data-i18n="methodTitle">
+Designed around<br>precision.
+</h2>
 
-  <div class="method-grid reveal">
+</div>
 
+<p class="method-lead" data-i18n="methodLead">
+A clear process creates consistent results. We design every service around the individual property.
+</p>
 
-    <div class="method-item">
+</div>
 
-      <div class="method-num">
-        01
-      </div>
+<div class="method-grid">
 
-      <h3 data-i18n="method1Title">
-        Analyse
-      </h3>
+<article class="method-item reveal">
+<div class="method-num">01</div>
+<h3 data-i18n="method1Title">Analysis</h3>
+<p data-i18n="method1Text">
+We understand the property, its requirements and how it is used.
+</p>
+</article>
 
-      <p data-i18n="method1Text">
-        Wir verstehen Objekt, Anforderungen und Nutzung.
-      </p>
+<article class="method-item reveal">
+<div class="method-num">02</div>
+<h3 data-i18n="method2Title">Planning</h3>
+<p data-i18n="method2Text">
+Clear processes and individually defined standards.
+</p>
+</article>
 
-    </div>
+<article class="method-item reveal">
+<div class="method-num">03</div>
+<h3 data-i18n="method3Title">Execution</h3>
+<p data-i18n="method3Text">
+Precise execution by trained teams.
+</p>
+</article>
 
+<article class="method-item reveal">
+<div class="method-num">04</div>
+<h3 data-i18n="method4Title">Control</h3>
+<p data-i18n="method4Text">
+Quality is continuously monitored and refined.
+</p>
+</article>
 
-    <div class="method-item">
+<article class="method-item reveal">
+<div class="method-num">05</div>
+<h3 data-i18n="method5Title">Preservation</h3>
+<p data-i18n="method5Text">
+We think beyond today and protect the long-term condition of the property.
+</p>
+</article>
 
-      <div class="method-num">
-        02
-      </div>
-
-      <h3 data-i18n="method2Title">
-        Planung
-      </h3>
-
-      <p data-i18n="method2Text">
-        Klare Abläufe und individuell definierte Standards.
-      </p>
-
-    </div>
-
-
-    <div class="method-item">
-
-      <div class="method-num">
-        03
-      </div>
-
-      <h3 data-i18n="method3Title">
-        Ausführung
-      </h3>
-
-      <p data-i18n="method3Text">
-        Präzise Umsetzung durch geschulte Teams.
-      </p>
-
-    </div>
-
-
-    <div class="method-item">
-
-      <div class="method-num">
-        04
-      </div>
-
-      <h3 data-i18n="method4Title">
-        Kontrolle
-      </h3>
-
-      <p data-i18n="method4Text">
-        Qualität wird kontrolliert und kontinuierlich verbessert.
-      </p>
-
-    </div>
-
-
-    <div class="method-item">
-
-      <div class="method-num">
-        05
-      </div>
-
-      <h3 data-i18n="method5Title">
-        Erhalten
-      </h3>
-
-      <p data-i18n="method5Text">
-        Wir denken nicht nur an heute, sondern an den langfristigen Zustand.
-      </p>
-
-    </div>
-
-  </div>
+</div>
+</div>
 
 </section>
 
+<section class="split">
 
-<section class="split-section">
+<div class="split-image"></div>
 
-  <div class="split-image"></div>
+<div class="split-content reveal">
 
-  <div class="split-content reveal">
+<div class="section-kicker" data-i18n="splitKicker">
+THE DETAIL
+</div>
 
-    <div class="section-kicker">
-      CLEANIMANN
-    </div>
+<h2 data-i18n="splitTitle">
+Designed<br>for detail.
+</h2>
 
-    <h2 data-i18n="splitTitle">
-      Designed<br>
-      for detail.
-    </h2>
+<p data-i18n="splitText">
+Quality reveals itself where others do not look. From glass and natural stone to the smallest details, we treat every space with the same attention with which it was created.
+</p>
 
-    <p data-i18n="splitText">
-      Qualität zeigt sich dort, wo andere nicht hinsehen.
-      Von Glas und Naturstein bis zu kleinsten Details:
-      Wir behandeln Räume mit derselben Sorgfalt,
-      mit der sie gestaltet wurden.
-    </p>
-
-    <div class="split-line"></div>
-
-  </div>
+</div>
 
 </section>
 
+<section class="products" id="products">
 
-<section class="career-section"
-         id="career">
+<div class="products-inner">
 
-  <div class="career-inner reveal">
+<div class="products-top reveal">
 
-    <div class="section-kicker"
-         data-i18n="careerKicker">
-      JOIN CLEANIMANN
-    </div>
+<div>
 
-    <h2 class="career-title"
-        data-i18n="careerTitle">
-      Karriere
-    </h2>
+<div class="section-kicker" data-i18n="productsKicker">
+PRODUCTS
+</div>
 
-    <p class="career-copy"
-       data-i18n="careerText">
-      Wir suchen Menschen mit Anspruch, Zuverlässigkeit
-      und einem Auge für Details.
-    </p>
+<h2 data-i18n="productsTitle">
+CLEANIMANN<br>Objects.
+</h2>
 
-    <a href="mailto:hello@cleanimann.de"
-       class="career-link"
-       data-i18n="careerLink">
-      Initiativ bewerben
-    </a>
+</div>
 
-  </div>
+<div class="products-status" data-i18n="productsStatus">
+COMING SOON
+</div>
+
+</div>
+
+<div class="products-grid">
+
+<div class="product-placeholder reveal">
+
+<div class="product-index">01</div>
+<div class="product-symbol">CI</div>
+
+<h3 data-i18n="product1Title">
+Selected Essentials
+</h3>
+
+<p data-i18n="product1Text">
+Curated products for care, order and the CLEANIMANN standard — available online in the future.
+</p>
+
+</div>
+
+<div class="product-placeholder product-placeholder-dark reveal">
+
+<div class="product-index">02</div>
+<div class="product-symbol">+</div>
+
+<h3 data-i18n="product2Title">
+Future Collection
+</h3>
+
+<p data-i18n="product2Text">
+A curated collection for spaces that should feel as refined as they look.
+</p>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
+<section class="career">
 
-<section class="contact"
-         id="contact">
+<div class="career-inner">
 
-  <div class="section-kicker reveal"
-       data-i18n="contactKicker">
-    START A CONVERSATION
-  </div>
+<div class="reveal">
 
-  <h2 class="reveal"
-      data-i18n="contactTitle">
-    Your space.<br>
-    Our standard.
-  </h2>
+<div class="section-kicker" data-i18n="careerKicker">
+JOIN CLEANIMANN
+</div>
 
-  <a href="mailto:hello@cleanimann.de"
-     class="contact-email reveal">
-    hello@cleanimann.de
-  </a>
+<h2 data-i18n="careerTitle">
+Careers
+</h2>
 
-  <div class="contact-small reveal"
-       data-i18n="contactSmall">
-    Germany · Premium Services
-  </div>
+</div>
+
+<div class="reveal">
+
+<p class="career-text" data-i18n="careerText">
+We are looking for people with high standards, reliability and attention to detail.
+</p>
+
+<a href="#contact" class="career-link" data-i18n="careerLink">
+Apply now
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="contact" id="contact">
+
+<div class="contact-inner reveal">
+
+<div class="section-kicker" data-i18n="contactKicker">
+START A CONVERSATION
+</div>
+
+<h2 data-i18n="contactTitle">
+Your space.<br>Our standard.
+</h2>
+
+<div class="contact-bottom">
+
+<a href="mailto:hello@cleanimann.de" class="contact-email">
+hello@cleanimann.de
+</a>
+
+<div class="contact-small" data-i18n="contactSmall">
+Germany · Premium Services
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 </main>
 
-
 <footer>
 
-  <div class="footer-monogram">
-    CI
-  </div>
+<div class="footer-brand">CLEANIMANN</div>
 
-  <div>
-    © 2026 CLEANIMANN
-  </div>
+<div data-i18n="footerTagline">
+BEYOND CLEAN.
+</div>
 
-  <div data-i18n="footerTagline">
-    MEHR ALS SAUBERKEIT.
-  </div>
-
-  <div>
-    GERMANY
-  </div>
+<div>© 2026</div>
 
 </footer>
 
-
 <script>
 
-const translations = {
+const translations={
 
 de:{
+navContact:"Kontakt",
+navProducts:"Produkte",
 
-  navContact:"Kontakt",
-  navProducts:"Products",
+heroEyebrow:"Premium Services · Deutschland",
+heroBeyond:"Mehr als",
+heroClean:"Sauberkeit.",
+heroCopy:"Premium-Reinigung, Gebäudeservice und Immobilienpflege für Räume, in denen Qualität spürbar sein soll.",
+scroll:"Entdecken",
 
-  heroEyebrow:"Premium Services · Deutschland",
-  heroBeyond:"Mehr als",
-  heroClean:"Sauberkeit.",
-  heroCopy:"Premium Reinigung, Gebäudeservice und Property Care für Räume, in denen Qualität sichtbar sein soll.",
-  scroll:"Entdecken",
+introKicker:"DER ANFANG",
+introTitle:"Sauberkeit ist nur der Anfang.",
+introText:"CLEANIMANN steht für eine neue Generation professioneller Reinigung und Gebäudedienstleistungen. Wir verbinden Präzision, Diskretion und Beständigkeit mit einem Standard, der weit über gewöhnliche Reinigung hinausgeht.",
 
-  introKicker:"THE BEGINNING",
-  introTitle:"Sauberkeit ist nur der Anfang.",
-  introText:"CLEANIMANN steht für eine neue Generation professioneller Reinigung und Gebäudeservices. Wir verbinden Präzision, Diskretion und konsequente Qualität mit einem Anspruch, der weit über klassische Reinigung hinausgeht.",
+breakCaption:"Räume, die Bedeutung haben.",
 
-  breakCaption:"Spaces that matter.",
+standardKicker:"DER STANDARD",
+standardTitle:"Der CLEANIMANN<br>Standard.",
+standardIntro:"Jedes Detail zählt. Jeder Prozess hat einen Zweck. Jeder Raum verdient einen höheren Standard.",
 
-  standardTitle:"The CLEANIMANN Standard.",
+standard1Title:"Präzision",
+standard1Text:"Jeder Prozess folgt klaren Standards und höchster Aufmerksamkeit für Details.",
 
-  standard1Title:"Präzision",
-  standard1Text:"Jeder Ablauf folgt klaren Standards und höchster Detailgenauigkeit.",
+standard2Title:"Diskretion",
+standard2Text:"Unaufdringlicher Service für private und professionelle Räume.",
 
-  standard2Title:"Diskretion",
-  standard2Text:"Unauffälliger Service für private und geschäftliche Räume.",
+standard3Title:"Zuverlässigkeit",
+standard3Text:"Zuverlässige Prozesse, klare Standards und transparente Kommunikation.",
 
-  standard3Title:"Zuverlässigkeit",
-  standard3Text:"Verlässliche Abläufe, feste Standards und klare Kommunikation.",
+standard4Title:"Beständigkeit",
+standard4Text:"Qualität, die nicht nur heute, sondern jeden Tag auf hohem Niveau bleibt.",
 
-  standard4Title:"Konsistenz",
-  standard4Text:"Qualität, die nicht nur heute, sondern dauerhaft überzeugt.",
+standard5Title:"Exzellenz",
+standard5Text:"Ein Standard, der aus einer Dienstleistung ein Erlebnis macht.",
 
-  standard5Title:"Exzellenz",
-  standard5Text:"Ein Anspruch, der aus Service eine Erfahrung macht.",
+servicesKicker:"UNSERE SERVICES",
+servicesTitle:"Immobilienpflege.<br>Auf höchstem Niveau.",
+servicesIntro:"Von Premium-Reinigung bis zum ganzheitlichen Gebäudeservice — CLEANIMANN denkt Immobilienpflege umfassend.",
 
-  servicesKicker:"OUR SERVICES",
-  servicesTitle:"Property care.<br>Elevated.",
-  servicesIntro:"Von hochwertiger Reinigung bis zu umfassenden Gebäudeservices — CLEANIMANN betreut Immobilien mit einem ganzheitlichen Anspruch.",
+service1Title:"Reinigung",
+service1Text:"Premium-Reinigung für private Residenzen, Hotels, Büros und hochwertige Immobilien.",
 
-  service1Title:"Reinigung",
-  service1Text:"Premium Reinigung für private Residenzen, Hotels, Büros und anspruchsvolle Immobilien.",
+service2Title:"Gebäudeservice",
+service2Text:"Professionelle Immobilienpflege mit klaren Standards und zuverlässigen Prozessen.",
 
-  service2Title:"Gebäudeservice",
-  service2Text:"Professionelle Betreuung von Immobilien mit klaren Standards und zuverlässigen Abläufen.",
+service3Title:"Facility Services",
+service3Text:"Integrierte Services für moderne Gewerbe- und Premiumimmobilien.",
 
-  service3Title:"Facility Services",
-  service3Text:"Ganzheitliche Services für moderne Gewerbe- und Premiumimmobilien.",
+service4Title:"Außenanlagen",
+service4Text:"Pflege von Eingangsbereichen, Außenflächen, Gärten und Winterdienst.",
 
-  service4Title:"Außenbereiche",
-  service4Text:"Gepflegte Eingänge, Außenflächen, Gartenbereiche und Winterdienst.",
+methodKicker:"DIE METHODE",
+methodTitle:"Entwickelt rund um<br>Präzision.",
+methodLead:"Ein klarer Prozess schafft konstante Ergebnisse. Wir gestalten jeden Service individuell rund um die Immobilie.",
 
-  productsKicker:"PRODUCTS",
-  productsTitle:"CLEANIMANN<br>Objects.",
-  productsStatus:"COMING SOON",
+method1Title:"Analyse",
+method1Text:"Wir verstehen das Objekt, seine Anforderungen und seine Nutzung.",
 
-  product1Title:"Selected Essentials",
-  product1Text:"Ausgewählte Produkte für Pflege, Ordnung und den CLEANIMANN Standard — später direkt online erhältlich.",
+method2Title:"Planung",
+method2Text:"Klare Prozesse und individuell definierte Standards.",
 
-  product2Title:"Future Collection",
-  product2Text:"Eine kuratierte Kollektion für Räume, die sich genauso gut anfühlen sollen, wie sie aussehen.",
+method3Title:"Umsetzung",
+method3Text:"Präzise Umsetzung durch geschulte Teams.",
 
-  methodTitle:"Designed around<br>precision.",
+method4Title:"Kontrolle",
+method4Text:"Qualität wird kontinuierlich kontrolliert und weiterentwickelt.",
 
-  method1Title:"Analyse",
-  method1Text:"Wir verstehen Objekt, Anforderungen und Nutzung.",
+method5Title:"Erhalt",
+method5Text:"Wir denken über heute hinaus und schützen den langfristigen Zustand der Immobilie.",
 
-  method2Title:"Planung",
-  method2Text:"Klare Abläufe und individuell definierte Standards.",
+splitKicker:"DAS DETAIL",
+splitTitle:"Designed<br>for detail.",
+splitText:"Qualität zeigt sich dort, wo andere nicht hinsehen. Von Glas und Naturstein bis ins kleinste Detail behandeln wir jeden Raum mit derselben Aufmerksamkeit, mit der er geschaffen wurde.",
 
-  method3Title:"Ausführung",
-  method3Text:"Präzise Umsetzung durch geschulte Teams.",
+productsKicker:"PRODUKTE",
+productsTitle:"CLEANIMANN<br>Objects.",
+productsStatus:"COMING SOON",
+product1Title:"Selected Essentials",
+product1Text:"Ausgewählte Produkte für Pflege, Ordnung und den CLEANIMANN Standard — später direkt online erhältlich.",
+product2Title:"Future Collection",
+product2Text:"Eine kuratierte Kollektion für Räume, die sich genauso gut anfühlen sollen, wie sie aussehen.",
 
-  method4Title:"Kontrolle",
-  method4Text:"Qualität wird kontrolliert und kontinuierlich verbessert.",
+careerKicker:"KARRIERE BEI CLEANIMANN",
+careerTitle:"Karriere",
+careerText:"Wir suchen Menschen mit hohen Standards, Zuverlässigkeit und einem Auge für Details.",
+careerLink:"Bewerben",
 
-  method5Title:"Erhalten",
-  method5Text:"Wir denken nicht nur an heute, sondern an den langfristigen Zustand.",
+contactKicker:"GESPRÄCH BEGINNEN",
+contactTitle:"Your space.<br>Our standard.",
+contactSmall:"Deutschland · Premium Services",
 
-  splitTitle:"Designed<br>for detail.",
-  splitText:"Qualität zeigt sich dort, wo andere nicht hinsehen. Von Glas und Naturstein bis zu kleinsten Details: Wir behandeln Räume mit derselben Sorgfalt, mit der sie gestaltet wurden.",
-
-  careerKicker:"JOIN CLEANIMANN",
-  careerTitle:"Karriere",
-  careerText:"Wir suchen Menschen mit Anspruch, Zuverlässigkeit und einem Auge für Details.",
-  careerLink:"Initiativ bewerben",
-
-  contactKicker:"START A CONVERSATION",
-  contactTitle:"Your space.<br>Our standard.",
-  contactSmall:"Germany · Premium Services",
-
-  footerTagline:"MEHR ALS SAUBERKEIT."
-
+footerTagline:"MEHR ALS SAUBERKEIT."
 },
-
 
 en:{
+navContact:"Contact",
+navProducts:"Products",
 
-  navContact:"Contact",
-  navProducts:"Products",
+heroEyebrow:"Premium Services · Germany",
+heroBeyond:"Beyond",
+heroClean:"clean.",
+heroCopy:"Premium cleaning, building services and property care for spaces where quality should be felt.",
+scroll:"Explore",
 
-  heroEyebrow:"Premium Services · Germany",
-  heroBeyond:"Beyond",
-  heroClean:"Clean.",
-  heroCopy:"Premium cleaning, building services and property care for spaces where quality should be visible.",
-  scroll:"Discover",
+introKicker:"THE BEGINNING",
+introTitle:"Cleanliness is only the beginning.",
+introText:"CLEANIMANN represents a new generation of professional cleaning and building services. We combine precision, discretion and consistency with a standard that goes far beyond ordinary cleaning.",
 
-  introKicker:"THE BEGINNING",
-  introTitle:"Clean is only the beginning.",
-  introText:"CLEANIMANN represents a new generation of professional cleaning and building services. We combine precision, discretion and consistent quality with a standard that goes far beyond traditional cleaning.",
+breakCaption:"Spaces that matter.",
 
-  breakCaption:"Spaces that matter.",
+standardKicker:"THE STANDARD",
+standardTitle:"The CLEANIMANN<br>Standard.",
+standardIntro:"Every detail matters. Every process has a purpose. Every space deserves a higher standard.",
 
-  standardTitle:"The CLEANIMANN Standard.",
+standard1Title:"Precision",
+standard1Text:"Every process follows clear standards and attention to detail.",
 
-  standard1Title:"Precision",
-  standard1Text:"Every process follows clear standards and exceptional attention to detail.",
+standard2Title:"Discretion",
+standard2Text:"A discreet service designed for private and professional spaces.",
 
-  standard2Title:"Discretion",
-  standard2Text:"Unobtrusive service for private and professional environments.",
+standard3Title:"Reliability",
+standard3Text:"Reliable processes, clear standards and transparent communication.",
 
-  standard3Title:"Reliability",
-  standard3Text:"Reliable processes, defined standards and clear communication.",
+standard4Title:"Consistency",
+standard4Text:"Quality that remains high not only today, but every day.",
 
-  standard4Title:"Consistency",
-  standard4Text:"Quality that does not only impress today, but lasts.",
+standard5Title:"Excellence",
+standard5Text:"A standard that turns a service into an experience.",
 
-  standard5Title:"Excellence",
-  standard5Text:"A standard that turns service into an experience.",
+servicesKicker:"OUR SERVICES",
+servicesTitle:"Property care.<br>At a higher level.",
+servicesIntro:"From premium cleaning to complete building services — CLEANIMANN takes a holistic approach to property care.",
 
-  servicesKicker:"OUR SERVICES",
-  servicesTitle:"Property care.<br>Elevated.",
-  servicesIntro:"From premium cleaning to comprehensive building services — CLEANIMANN looks after properties with a holistic approach.",
+service1Title:"Cleaning",
+service1Text:"Premium cleaning for private residences, hotels, offices and high-end properties.",
 
-  service1Title:"Cleaning",
-  service1Text:"Premium cleaning for private residences, hotels, offices and demanding properties.",
+service2Title:"Building Services",
+service2Text:"Professional property care with clear standards and reliable processes.",
 
-  service2Title:"Building Services",
-  service2Text:"Professional property care with clear standards and reliable processes.",
+service3Title:"Facility Services",
+service3Text:"Integrated services for modern commercial and premium properties.",
 
-  service3Title:"Facility Services",
-  service3Text:"Comprehensive services for modern commercial and premium properties.",
+service4Title:"Exterior Care",
+service4Text:"Care for entrances, grounds, gardens and seasonal winter services.",
 
-  service4Title:"Outdoor Areas",
-  service4Text:"Immaculate entrances, exterior areas, gardens and winter services.",
+methodKicker:"THE METHOD",
+methodTitle:"Designed around<br>precision.",
+methodLead:"A clear process creates consistent results. We design every service around the individual property.",
 
-  productsKicker:"PRODUCTS",
-  productsTitle:"CLEANIMANN<br>Objects.",
-  productsStatus:"COMING SOON",
+method1Title:"Analysis",
+method1Text:"We understand the property, its requirements and how it is used.",
 
-  product1Title:"Selected Essentials",
-  product1Text:"Curated products for care, order and the CLEANIMANN standard — available online in the future.",
+method2Title:"Planning",
+method2Text:"Clear processes and individually defined standards.",
 
-  product2Title:"Future Collection",
-  product2Text:"A curated collection for spaces that should feel as refined as they look.",
+method3Title:"Execution",
+method3Text:"Precise execution by trained teams.",
 
-  methodTitle:"Designed around<br>precision.",
+method4Title:"Control",
+method4Text:"Quality is continuously monitored and refined.",
 
-  method1Title:"Analysis",
-  method1Text:"We understand the property, requirements and usage.",
+method5Title:"Preservation",
+method5Text:"We think beyond today and protect the long-term condition of the property.",
 
-  method2Title:"Planning",
-  method2Text:"Clear processes and individually defined standards.",
+splitKicker:"THE DETAIL",
+splitTitle:"Designed<br>for detail.",
+splitText:"Quality reveals itself where others do not look. From glass and natural stone to the smallest details, we treat every space with the same attention with which it was created.",
 
-  method3Title:"Execution",
-  method3Text:"Precise implementation by trained teams.",
+productsKicker:"PRODUCTS",
+productsTitle:"CLEANIMANN<br>Objects.",
+productsStatus:"COMING SOON",
+product1Title:"Selected Essentials",
+product1Text:"Curated products for care, order and the CLEANIMANN standard — available online in the future.",
+product2Title:"Future Collection",
+product2Text:"A curated collection for spaces that should feel as refined as they look.",
 
-  method4Title:"Control",
-  method4Text:"Quality is monitored and continuously improved.",
+careerKicker:"JOIN CLEANIMANN",
+careerTitle:"Careers",
+careerText:"We are looking for people with high standards, reliability and attention to detail.",
+careerLink:"Apply now",
 
-  method5Title:"Preserve",
-  method5Text:"We think beyond today and focus on long-term condition.",
+contactKicker:"START A CONVERSATION",
+contactTitle:"Your space.<br>Our standard.",
+contactSmall:"Germany · Premium Services",
 
-  splitTitle:"Designed<br>for detail.",
-  splitText:"Quality reveals itself where others do not look. From glass and natural stone to the smallest details, we treat every space with the same care with which it was designed.",
-
-  careerKicker:"JOIN CLEANIMANN",
-  careerTitle:"Careers",
-  careerText:"We are looking for people with high standards, reliability and an eye for detail.",
-  careerLink:"Apply proactively",
-
-  contactKicker:"START A CONVERSATION",
-  contactTitle:"Your space.<br>Our standard.",
-  contactSmall:"Germany · Premium Services",
-
-  footerTagline:"BEYOND CLEAN."
-
+footerTagline:"BEYOND CLEAN."
 },
-
 
 fa:{
+navContact:"تماس",
+navProducts:"محصولات",
 
-  navContact:"تماس",
-  navProducts:"محصولات",
+heroEyebrow:"خدمات پریمیوم · آلمان",
+heroBeyond:"فراتر از",
+heroClean:"پاکیزگی.",
+heroCopy:"نظافت پریمیوم، خدمات ساختمان و مراقبت از ملک برای فضاهایی که کیفیت باید در آن‌ها احساس شود.",
+scroll:"مشاهده",
 
-  heroEyebrow:"خدمات ممتاز · آلمان",
-  heroBeyond:"فراتر از",
-  heroClean:"پاکیزگی.",
-  heroCopy:"نظافت ممتاز، خدمات ساختمان و مراقبت از ملک برای فضاهایی که کیفیت باید در آن‌ها دیده شود.",
-  scroll:"مشاهده",
+introKicker:"آغاز",
+introTitle:"پاکیزگی فقط آغاز راه است.",
+introText:"CLEANIMANN نسل جدیدی از خدمات حرفه‌ای نظافت و ساختمان را ارائه می‌دهد. ما دقت، محرمانگی و ثبات را با استانداردی ترکیب می‌کنیم که فراتر از نظافت معمول است.",
 
-  introKicker:"آغاز",
-  introTitle:"پاکیزگی فقط آغاز راه است.",
-  introText:"CLEANIMANN نسل جدیدی از خدمات حرفه‌ای نظافت و ساختمان را ارائه می‌دهد؛ ترکیبی از دقت، محرمانگی و کیفیت مستمر با استانداردی فراتر از نظافت سنتی.",
+breakCaption:"فضاهایی که اهمیت دارند",
 
-  breakCaption:"مراقبت از ملک در سطوح بالا",
+standardKicker:"استاندارد",
+standardTitle:"استاندارد<br>CLEANIMANN",
+standardIntro:"هر جزئیات اهمیت دارد. هر فرآیند هدفی دارد. هر فضا شایسته استانداردی بالاتر است.",
 
-  standardTitle:"استاندارد CLEANIMANN.",
+standard1Title:"دقت",
+standard1Text:"هر فرآیند بر پایه استانداردهای روشن و توجه به جزئیات انجام می‌شود.",
 
-  standard1Title:"دقت",
-  standard1Text:"هر فرآیند بر پایه استانداردهای روشن و توجه دقیق به جزئیات انجام می‌شود.",
+standard2Title:"محرمانگی",
+standard2Text:"خدماتی آرام و حرفه‌ای برای فضاهای خصوصی و کاری.",
 
-  standard2Title:"محرمانگی",
-  standard2Text:"خدماتی آرام و بدون مزاحمت برای فضاهای خصوصی و حرفه‌ای.",
+standard3Title:"قابل اعتماد",
+standard3Text:"فرآیندهای قابل اعتماد، استانداردهای روشن و ارتباط شفاف.",
 
-  standard3Title:"اعتمادپذیری",
-  standard3Text:"فرآیندهای قابل اتکا، استانداردهای مشخص و ارتباط شفاف.",
+standard4Title:"ثبات",
+standard4Text:"کیفیتی که فقط امروز بالا نیست و هر روز حفظ می‌شود.",
 
-  standard4Title:"ثبات",
-  standard4Text:"کیفیتی که فقط برای امروز نیست و ماندگار است.",
+standard5Title:"تعالی",
+standard5Text:"استانداردی که خدمات را به یک تجربه تبدیل می‌کند.",
 
-  standard5Title:"تعالی",
-  standard5Text:"استانداردی که خدمات را به یک تجربه تبدیل می‌کند.",
+servicesKicker:"خدمات ما",
+servicesTitle:"مراقبت از ملک.<br>در سطحی بالاتر.",
+servicesIntro:"از نظافت پریمیوم تا خدمات کامل ساختمان — CLEANIMANN مراقبت از ملک را به‌صورت جامع انجام می‌دهد.",
 
-  servicesKicker:"خدمات ما",
-  servicesTitle:"مراقبت از ملک<br>در سطوح بالا",
-  servicesIntro:"از نظافت ممتاز تا خدمات جامع ساختمان؛ CLEANIMANN با نگاهی کامل از ملک شما مراقبت می‌کند.",
+service1Title:"نظافت",
+service1Text:"نظافت پریمیوم برای منازل لوکس، هتل‌ها، دفاتر و املاک سطح بالا.",
 
-  service1Title:"نظافت",
-  service1Text:"نظافت ممتاز برای منازل لوکس، هتل‌ها، دفاتر و املاک سطح بالا.",
+service2Title:"خدمات ساختمان",
+service2Text:"مراقبت حرفه‌ای از ملک با استانداردهای روشن و فرآیندهای قابل اعتماد.",
 
-  service2Title:"خدمات ساختمان",
-  service2Text:"مراقبت حرفه‌ای از ملک با استانداردهای روشن و فرآیندهای قابل اعتماد.",
+service3Title:"خدمات فسیلیتی",
+service3Text:"خدمات یکپارچه برای املاک مدرن تجاری و پریمیوم.",
 
-  service3Title:"خدمات تأسیسات",
-  service3Text:"خدمات جامع برای املاک مدرن تجاری و ممتاز.",
+service4Title:"مراقبت از فضای بیرونی",
+service4Text:"مراقبت از ورودی‌ها، محوطه، باغ و خدمات زمستانی.",
 
-  service4Title:"فضاهای بیرونی",
-  service4Text:"مراقبت از ورودی‌ها، محوطه، باغ و خدمات زمستانی.",
+methodKicker:"روش ما",
+methodTitle:"بر پایه<br>دقت طراحی شده.",
+methodLead:"یک فرآیند روشن، نتیجه‌ای پایدار ایجاد می‌کند. هر خدمت را متناسب با خود ملک طراحی می‌کنیم.",
 
-  productsKicker:"محصولات",
-  productsTitle:"محصولات<br>CLEANIMANN",
-  productsStatus:"به‌زودی",
+method1Title:"تحلیل",
+method1Text:"ملک، نیازها و نحوه استفاده از آن را به‌دقت بررسی می‌کنیم.",
 
-  product1Title:"منتخب‌های CLEANIMANN",
-  product1Text:"محصولات منتخب برای نگهداری، نظم و استاندارد CLEANIMANN که در آینده مستقیماً از سایت قابل خرید خواهند بود.",
+method2Title:"برنامه‌ریزی",
+method2Text:"فرآیندهای روشن و استانداردهای اختصاصی.",
 
-  product2Title:"مجموعه آینده",
-  product2Text:"مجموعه‌ای منتخب برای فضاهایی که باید به اندازه ظاهرشان، حس خوبی داشته باشند.",
+method3Title:"اجرا",
+method3Text:"اجرای دقیق توسط تیم‌های آموزش‌دیده.",
 
-  methodTitle:"بر پایه دقت<br>طراحی شده.",
+method4Title:"کنترل",
+method4Text:"کیفیت به‌صورت مستمر کنترل و بهبود داده می‌شود.",
 
-  method1Title:"تحلیل",
-  method1Text:"ملک، نیازها و نحوه استفاده از آن را به‌دقت بررسی می‌کنیم.",
+method5Title:"حفظ",
+method5Text:"فقط به امروز فکر نمی‌کنیم؛ وضعیت بلندمدت ملک برای ما اهمیت دارد.",
 
-  method2Title:"برنامه‌ریزی",
-  method2Text:"فرآیندهای روشن و استانداردهای متناسب با هر ملک.",
+splitKicker:"جزئیات",
+splitTitle:"طراحی شده<br>برای جزئیات.",
+splitText:"کیفیت در جاهایی دیده می‌شود که دیگران نگاه نمی‌کنند. از شیشه و سنگ طبیعی تا کوچک‌ترین جزئیات، با هر فضا همان دقتی را داریم که در طراحی اولیه آن به کار رفته است.",
 
-  method3Title:"اجرا",
-  method3Text:"اجرای دقیق توسط تیم‌های آموزش‌دیده.",
+productsKicker:"محصولات",
+productsTitle:"محصولات<br>CLEANIMANN",
+productsStatus:"به‌زودی",
+product1Title:"منتخب‌های CLEANIMANN",
+product1Text:"محصولات منتخب برای نگهداری، نظم و استاندارد CLEANIMANN که در آینده مستقیماً از سایت قابل خرید خواهند بود.",
+product2Title:"مجموعه آینده",
+product2Text:"مجموعه‌ای منتخب برای فضاهایی که باید به اندازه ظاهرشان، حس خوبی داشته باشند.",
 
-  method4Title:"کنترل",
-  method4Text:"کیفیت به‌صورت مستمر کنترل و بهبود داده می‌شود.",
+careerKicker:"پیوستن به CLEANIMANN",
+careerTitle:"فرصت‌های شغلی",
+careerText:"ما به دنبال افرادی با استانداردهای بالا، قابل اعتماد و دقیق هستیم.",
+careerLink:"ارسال درخواست",
 
-  method5Title:"حفظ",
-  method5Text:"فقط به امروز فکر نمی‌کنیم؛ وضعیت بلندمدت ملک برای ما اهمیت دارد.",
+contactKicker:"شروع گفتگو",
+contactTitle:"فضای شما.<br>استاندارد ما.",
+contactSmall:"آلمان · خدمات پریمیوم",
 
-  splitTitle:"طراحی شده<br>برای جزئیات.",
-  splitText:"کیفیت جایی دیده می‌شود که دیگران کمتر به آن توجه می‌کنند. از شیشه و سنگ طبیعی تا کوچک‌ترین جزئیات، ما با هر فضا همان‌قدر دقیق رفتار می‌کنیم که در طراحی آن شده است.",
-
-  careerKicker:"به CLEANIMANN بپیوندید",
-  careerTitle:"همکاری",
-  careerText:"به دنبال افرادی با استاندارد بالا، قابل اعتماد و دقیق هستیم.",
-  careerLink:"ارسال درخواست",
-
-  contactKicker:"شروع گفتگو",
-  contactTitle:"فضای شما.<br>استاندارد ما.",
-  contactSmall:"آلمان · خدمات ممتاز",
-
-  footerTagline:"فراتر از پاکیزگی."
-
+footerTagline:"فراتر از پاکیزگی."
 },
-
 
 uk:{
+navContact:"Контакти",
+navProducts:"Продукти",
 
-  navContact:"Контакти",
-  navProducts:"Продукти",
+heroEyebrow:"Преміальні послуги · Німеччина",
+heroBeyond:"Більше, ніж",
+heroClean:"чистота.",
+heroCopy:"Преміальне прибирання, обслуговування будівель та догляд за нерухомістю для просторів, де якість має відчуватися.",
+scroll:"Відкрити",
 
-  heroEyebrow:"Преміальні послуги · Німеччина",
-  heroBeyond:"Більше, ніж",
-  heroClean:"чистота.",
-  heroCopy:"Преміальне прибирання, обслуговування будівель та догляд за нерухомістю для просторів, де якість має бути помітною.",
-  scroll:"Відкрити",
+introKicker:"ПОЧАТОК",
+introTitle:"Чистота — лише початок.",
+introText:"CLEANIMANN представляє нове покоління професійного прибирання та обслуговування будівель. Ми поєднуємо точність, конфіденційність і стабільність зі стандартом, що значно перевищує звичайне прибирання.",
 
-  introKicker:"ПОЧАТОК",
-  introTitle:"Чистота — це лише початок.",
-  introText:"CLEANIMANN представляє нове покоління професійного прибирання та обслуговування будівель. Ми поєднуємо точність, конфіденційність і стабільну якість зі стандартом, що виходить далеко за межі звичайного прибирання.",
+breakCaption:"Простори, які мають значення.",
 
-  breakCaption:"Простори, які мають значення.",
+standardKicker:"СТАНДАРТ",
+standardTitle:"Стандарт<br>CLEANIMANN.",
+standardIntro:"Кожна деталь має значення. Кожен процес має мету. Кожен простір заслуговує на вищий стандарт.",
 
-  standardTitle:"Стандарт CLEANIMANN.",
+standard1Title:"Точність",
+standard1Text:"Кожен процес відповідає чітким стандартам і увазі до деталей.",
 
-  standard1Title:"Точність",
-  standard1Text:"Кожен процес відповідає чітким стандартам та особливій увазі до деталей.",
+standard2Title:"Конфіденційність",
+standard2Text:"Ненав'язливий сервіс для приватних і професійних просторів.",
 
-  standard2Title:"Конфіденційність",
-  standard2Text:"Ненав’язливий сервіс для приватних і професійних просторів.",
+standard3Title:"Надійність",
+standard3Text:"Надійні процеси, чіткі стандарти та прозора комунікація.",
 
-  standard3Title:"Надійність",
-  standard3Text:"Надійні процеси, чіткі стандарти та прозора комунікація.",
+standard4Title:"Стабільність",
+standard4Text:"Якість, яка залишається високою не лише сьогодні.",
 
-  standard4Title:"Стабільність",
-  standard4Text:"Якість, яка залишається високою не лише сьогодні.",
+standard5Title:"Досконалість",
+standard5Text:"Стандарт, який перетворює послугу на досвід.",
 
-  standard5Title:"Досконалість",
-  standard5Text:"Стандарт, який перетворює послугу на досвід.",
+servicesKicker:"НАШІ ПОСЛУГИ",
+servicesTitle:"Догляд за нерухомістю.<br>На вищому рівні.",
+servicesIntro:"Від преміального прибирання до комплексного обслуговування будівель — CLEANIMANN працює з нерухомістю комплексно.",
 
-  servicesKicker:"НАШІ ПОСЛУГИ",
-  servicesTitle:"Догляд за нерухомістю.<br>На вищому рівні.",
-  servicesIntro:"Від преміального прибирання до комплексного обслуговування будівель — CLEANIMANN працює з нерухомістю комплексно.",
+service1Title:"Прибирання",
+service1Text:"Преміальне прибирання приватних резиденцій, готелів, офісів та об’єктів високого класу.",
 
-  service1Title:"Прибирання",
-  service1Text:"Преміальне прибирання приватних резиденцій, готелів, офісів та об’єктів високого класу.",
+service2Title:"Сервіс будівель",
+service2Text:"Професійний догляд за нерухомістю з чіткими стандартами та надійними процесами.",
 
-  service2Title:"Сервіс будівель",
-  service2Text:"Професійний догляд за нерухомістю з чіткими стандартами та надійними процесами.",
+service3Title:"Facility Services",
+service3Text:"Комплексні послуги для сучасної комерційної та преміальної нерухомості.",
 
-  service3Title:"Facility Services",
-  service3Text:"Комплексні послуги для сучасної комерційної та преміальної нерухомості.",
+service4Title:"Зовнішні території",
+service4Text:"Догляд за входами, територіями, садами та зимове обслуговування.",
 
-  service4Title:"Зовнішні території",
-  service4Text:"Догляд за входами, територіями, садами та зимове обслуговування.",
+methodKicker:"МЕТОД",
+methodTitle:"Створено навколо<br>точності.",
+methodLead:"Чіткий процес створює стабільний результат. Ми проєктуємо кожну послугу відповідно до конкретного об’єкта.",
 
-  productsKicker:"ПРОДУКТИ",
-  productsTitle:"CLEANIMANN<br>Objects.",
-  productsStatus:"СКОРО",
+method1Title:"Аналіз",
+method1Text:"Ми розуміємо об’єкт, вимоги та спосіб його використання.",
 
-  product1Title:"Selected Essentials",
-  product1Text:"Добірка продуктів для догляду, порядку та стандарту CLEANIMANN — незабаром доступна онлайн.",
+method2Title:"Планування",
+method2Text:"Чіткі процеси та індивідуально визначені стандарти.",
 
-  product2Title:"Future Collection",
-  product2Text:"Кураторська колекція для просторів, які мають відчуватися так само добре, як виглядають.",
+method3Title:"Виконання",
+method3Text:"Точна реалізація підготовленими командами.",
 
-  methodTitle:"Створено навколо<br>точності.",
+method4Title:"Контроль",
+method4Text:"Якість постійно контролюється та вдосконалюється.",
 
-  method1Title:"Аналіз",
-  method1Text:"Ми розуміємо об’єкт, вимоги та спосіб його використання.",
+method5Title:"Збереження",
+method5Text:"Ми думаємо не лише про сьогодні, а й про довгостроковий стан.",
 
-  method2Title:"Планування",
-  method2Text:"Чіткі процеси та індивідуально визначені стандарти.",
+splitKicker:"ДЕТАЛІ",
+splitTitle:"Створено<br>для деталей.",
+splitText:"Якість проявляється там, куди інші не дивляться. Від скла та натурального каменю до найменших деталей — ми ставимося до кожного простору з тією ж увагою, з якою його було створено.",
 
-  method3Title:"Виконання",
-  method3Text:"Точна реалізація підготовленими командами.",
+productsKicker:"ПРОДУКТИ",
+productsTitle:"CLEANIMANN<br>Objects.",
+productsStatus:"СКОРО",
+product1Title:"Selected Essentials",
+product1Text:"Добірка продуктів для догляду, порядку та стандарту CLEANIMANN — незабаром доступна онлайн.",
+product2Title:"Future Collection",
+product2Text:"Кураторська колекція для просторів, які мають відчуватися так само добре, як виглядають.",
 
-  method4Title:"Контроль",
-  method4Text:"Якість постійно контролюється та вдосконалюється.",
+careerKicker:"ПРИЄДНУЙТЕСЯ ДО CLEANIMANN",
+careerTitle:"Вакансії",
+careerText:"Ми шукаємо людей із високими стандартами, надійністю та увагою до деталей.",
+careerLink:"Подати заявку",
 
-  method5Title:"Збереження",
-  method5Text:"Ми думаємо не лише про сьогодні, а й про довгостроковий стан.",
+contactKicker:"ПОЧАТИ РОЗМОВУ",
+contactTitle:"Ваш простір.<br>Наш стандарт.",
+contactSmall:"Німеччина · Преміальні послуги",
 
-  splitTitle:"Створено<br>для деталей.",
-  splitText:"Якість проявляється там, де інші не дивляться. Від скла та натурального каменю до найменших деталей — ми ставимося до кожного простору з тією ж увагою, з якою його було створено.",
-
-  careerKicker:"ПРИЄДНУЙТЕСЯ ДО CLEANIMANN",
-  careerTitle:"Вакансії",
-  careerText:"Ми шукаємо людей із високими стандартами, надійністю та увагою до деталей.",
-  careerLink:"Подати заявку",
-
-  contactKicker:"ПОЧАТИ РОЗМОВУ",
-  contactTitle:"Ваш простір.<br>Наш стандарт.",
-  contactSmall:"Німеччина · Преміальні послуги",
-
-  footerTagline:"БІЛЬШЕ, НІЖ ЧИСТОТА."
-
+footerTagline:"БІЛЬШЕ, НІЖ ЧИСТОТА."
 },
 
-
 ru:{
+navContact:"Контакты",
+navProducts:"Продукты",
 
-  navContact:"Контакты",
-  navProducts:"Продукты",
+heroEyebrow:"Премиальные услуги · Германия",
+heroBeyond:"Больше, чем",
+heroClean:"чистота.",
+heroCopy:"Премиальная уборка, обслуживание зданий и уход за недвижимостью для пространств, где качество должно ощущаться.",
+scroll:"Открыть",
 
-  heroEyebrow:"Премиальные услуги · Германия",
-  heroBeyond:"Больше, чем",
-  heroClean:"чистота.",
-  heroCopy:"Премиальная уборка, обслуживание зданий и уход за недвижимостью для пространств, где качество должно быть заметно.",
-  scroll:"Открыть",
+introKicker:"НАЧАЛО",
+introTitle:"Чистота — это только начало.",
+introText:"CLEANIMANN представляет новое поколение профессиональной уборки и обслуживания зданий. Мы объединяем точность, конфиденциальность и стабильность со стандартом, который значительно превосходит обычную уборку.",
 
-  introKicker:"НАЧАЛО",
-  introTitle:"Чистота — это только начало.",
-  introText:"CLEANIMANN представляет новое поколение профессиональной уборки и обслуживания зданий. Мы объединяем точность, конфиденциальность и стабильное качество со стандартом, который значительно превосходит обычную уборку.",
+breakCaption:"Пространства, которые имеют значение.",
 
-  breakCaption:"Пространства, которые имеют значение.",
+standardKicker:"СТАНДАРТ",
+standardTitle:"Стандарт<br>CLEANIMANN.",
+standardIntro:"Каждая деталь имеет значение. Каждый процесс имеет цель. Каждое пространство заслуживает более высокого стандарта.",
 
-  standardTitle:"Стандарт CLEANIMANN.",
+standard1Title:"Точность",
+standard1Text:"Каждый процесс соответствует четким стандартам и вниманию к деталям.",
 
-  standard1Title:"Точность",
-  standard1Text:"Каждый процесс соответствует четким стандартам и вниманию к деталям.",
+standard2Title:"Конфиденциальность",
+standard2Text:"Ненавязчивый сервис для частных и профессиональных пространств.",
 
-  standard2Title:"Конфиденциальность",
-  standard2Text:"Ненавязчивый сервис для частных и профессиональных пространств.",
+standard3Title:"Надёжность",
+standard3Text:"Надёжные процессы, четкие стандарты и прозрачная коммуникация.",
 
-  standard3Title:"Надёжность",
-  standard3Text:"Надёжные процессы, четкие стандарты и прозрачная коммуникация.",
+standard4Title:"Стабильность",
+standard4Text:"Качество, которое сохраняется не только сегодня.",
 
-  standard4Title:"Стабильность",
-  standard4Text:"Качество, которое сохраняется не только сегодня.",
+standard5Title:"Совершенство",
+standard5Text:"Стандарт, который превращает услугу в опыт.",
 
-  standard5Title:"Совершенство",
-  standard5Text:"Стандарт, который превращает услугу в опыт.",
+servicesKicker:"НАШИ УСЛУГИ",
+servicesTitle:"Уход за недвижимостью.<br>На новом уровне.",
+servicesIntro:"От премиальной уборки до комплексного обслуживания зданий — CLEANIMANN работает с недвижимостью комплексно.",
 
-  servicesKicker:"НАШИ УСЛУГИ",
-  servicesTitle:"Уход за недвижимостью.<br>На новом уровне.",
-  servicesIntro:"От премиальной уборки до комплексного обслуживания зданий — CLEANIMANN работает с недвижимостью комплексно.",
+service1Title:"Уборка",
+service1Text:"Премиальная уборка частных резиденций, отелей, офисов и объектов высокого класса.",
 
-  service1Title:"Уборка",
-  service1Text:"Премиальная уборка частных резиденций, отелей, офисов и объектов высокого класса.",
+service2Title:"Обслуживание зданий",
+service2Text:"Профессиональный уход за недвижимостью с четкими стандартами и надежными процессами.",
 
-  service2Title:"Обслуживание зданий",
-  service2Text:"Профессиональный уход за недвижимостью с четкими стандартами и надежными процессами.",
+service3Title:"Facility Services",
+service3Text:"Комплексные услуги для современной коммерческой и премиальной недвижимости.",
 
-  service3Title:"Facility Services",
-  service3Text:"Комплексные услуги для современной коммерческой и премиальной недвижимости.",
+service4Title:"Внешние территории",
+service4Text:"Уход за входными зонами, территориями, садами и зимнее обслуживание.",
 
-  service4Title:"Внешние территории",
-  service4Text:"Уход за входными зонами, территориями, садами и зимнее обслуживание.",
+methodKicker:"МЕТОД",
+methodTitle:"Создано вокруг<br>точности.",
+methodLead:"Четкий процесс создает стабильный результат. Мы проектируем каждую услугу вокруг конкретного объекта.",
 
-  productsKicker:"ПРОДУКТЫ",
-  productsTitle:"CLEANIMANN<br>Objects.",
-  productsStatus:"СКОРО",
+method1Title:"Анализ",
+method1Text:"Мы понимаем объект, требования и особенности его использования.",
 
-  product1Title:"Selected Essentials",
-  product1Text:"Отобранные продукты для ухода, порядка и стандарта CLEANIMANN — скоро будут доступны онлайн.",
+method2Title:"Планирование",
+method2Text:"Четкие процессы и индивидуально определенные стандарты.",
 
-  product2Title:"Future Collection",
-  product2Text:"Кураторская коллекция для пространств, которые должны ощущаться так же хорошо, как выглядят.",
+method3Title:"Исполнение",
+method3Text:"Точная реализация подготовленными командами.",
 
-  methodTitle:"Создано вокруг<br>точности.",
+method4Title:"Контроль",
+method4Text:"Качество постоянно контролируется и совершенствуется.",
 
-  method1Title:"Анализ",
-  method1Text:"Мы понимаем объект, требования и особенности его использования.",
+method5Title:"Сохранение",
+method5Text:"Мы думаем не только о сегодняшнем дне, но и о долгосрочном состоянии.",
 
-  method2Title:"Планирование",
-  method2Text:"Четкие процессы и индивидуально определенные стандарты.",
+splitKicker:"ДЕТАЛИ",
+splitTitle:"Создано<br>для деталей.",
+splitText:"Качество проявляется там, куда другие не смотрят. От стекла и натурального камня до мельчайших деталей — мы относимся к каждому пространству с той же заботой, с которой оно было создано.",
 
-  method3Title:"Исполнение",
-  method3Text:"Точная реализация подготовленными командами.",
+productsKicker:"ПРОДУКТЫ",
+productsTitle:"CLEANIMANN<br>Objects.",
+productsStatus:"СКОРО",
+product1Title:"Selected Essentials",
+product1Text:"Отобранные продукты для ухода, порядка и стандарта CLEANIMANN — скоро будут доступны онлайн.",
+product2Title:"Future Collection",
+product2Text:"Кураторская коллекция для пространств, которые должны ощущаться так же хорошо, как выглядят.",
 
-  method4Title:"Контроль",
-  method4Text:"Качество постоянно контролируется и совершенствуется.",
+careerKicker:"ПРИСОЕДИНИТЕСЬ К CLEANIMANN",
+careerTitle:"Вакансии",
+careerText:"Мы ищем людей с высокими стандартами, надежностью и вниманием к деталям.",
+careerLink:"Подать заявку",
 
-  method5Title:"Сохранение",
-  method5Text:"Мы думаем не только о сегодняшнем дне, но и о долгосрочном состоянии.",
+contactKicker:"НАЧАТЬ РАЗГОВОР",
+contactTitle:"Ваше пространство.<br>Наш стандарт.",
+contactSmall:"Германия · Премиальные услуги",
 
-  splitTitle:"Создано<br>для деталей.",
-  splitText:"Качество проявляется там, куда другие не смотрят. От стекла и натурального камня до мельчайших деталей — мы относимся к каждому пространству с той же заботой, с которой оно было создано.",
-
-  careerKicker:"ПРИСОЕДИНИТЕСЬ К CLEANIMANN",
-  careerTitle:"Вакансии",
-  careerText:"Мы ищем людей с высокими стандартами, надежностью и вниманием к деталям.",
-  careerLink:"Подать заявку",
-
-  contactKicker:"НАЧАТЬ РАЗГОВОР",
-  contactTitle:"Ваше пространство.<br>Наш стандарт.",
-  contactSmall:"Немецкий · Премиальные услуги",
-
-  footerTagline:"БОЛЬШЕ, ЧЕМ ЧИСТОТА."
-
+footerTagline:"БОЛЬШЕ, ЧЕМ ЧИСТОТА."
 }
 
 };
 
-
-/* CLEANING LOGO SWEEP */
-
-const cleaningCard =
-  document.getElementById("cleaningCard");
-
+const cleaningCard=document.getElementById("cleaningCard");
 
 function runCleaningSweep(){
 
-  if(!cleaningCard) return;
+if(!cleaningCard)return;
 
-  cleaningCard.classList.remove("active");
+cleaningCard.classList.remove("active");
+void cleaningCard.offsetWidth;
+cleaningCard.classList.add("active");
+cleaningCard.setAttribute("aria-expanded","true");
 
-  void cleaningCard.offsetWidth;
+const logo=cleaningCard.querySelector(".cleaning-center-logo");
+const brand=document.querySelector(".brand");
 
-  cleaningCard.classList.add("active");
+if(logo&&brand){
 
-  cleaningCard.setAttribute(
-    "aria-expanded",
-    "true"
-  );
+setTimeout(()=>{
 
+const from=logo.getBoundingClientRect();
+const to=brand.getBoundingClientRect();
 
-  const logo =
-    cleaningCard.querySelector(
-      ".cleaning-center-logo"
-    );
+logo.style.setProperty("--from-x",`${from.left+from.width/2}px`);
+logo.style.setProperty("--from-y",`${from.top+from.height/2}px`);
+logo.style.setProperty("--to-x",`${to.left+to.width/2}px`);
+logo.style.setProperty("--to-y",`${to.top+to.height/2}px`);
 
-  const brand =
-    document.querySelector(".brand");
+logo.classList.add("fly-to-brand");
 
-
-  if(logo && brand){
-
-    setTimeout(()=>{
-
-      const from =
-        logo.getBoundingClientRect();
-
-      const to =
-        brand.getBoundingClientRect();
-
-
-      logo.style.setProperty(
-        "--from-x",
-        `${from.left + from.width/2}px`
-      );
-
-      logo.style.setProperty(
-        "--from-y",
-        `${from.top + from.height/2}px`
-      );
-
-      logo.style.setProperty(
-        "--to-x",
-        `${to.left + to.width/2}px`
-      );
-
-      logo.style.setProperty(
-        "--to-y",
-        `${to.top + to.height/2}px`
-      );
-
-      logo.classList.add(
-        "fly-to-brand"
-      );
-
-    },1100);
-
-  }
-
-
-  clearTimeout(
-    window.cleaningSweepTimer
-  );
-
-
-  window.cleaningSweepTimer =
-    setTimeout(()=>{
-
-      cleaningCard.classList.remove(
-        "active"
-      );
-
-      if(logo){
-        logo.classList.remove(
-          "fly-to-brand"
-        );
-
-        logo.style.removeProperty(
-          "--from-x"
-        );
-
-        logo.style.removeProperty(
-          "--from-y"
-        );
-
-        logo.style.removeProperty(
-          "--to-x"
-        );
-
-        logo.style.removeProperty(
-          "--to-y"
-        );
-      }
-
-      cleaningCard.setAttribute(
-        "aria-expanded",
-        "false"
-      );
-
-    },3400);
+},1100);
 
 }
 
+clearTimeout(window.cleaningSweepTimer);
+
+window.cleaningSweepTimer=setTimeout(()=>{
+
+cleaningCard.classList.remove("active");
+
+if(logo){
+
+logo.classList.remove("fly-to-brand");
+
+logo.style.removeProperty("--from-x");
+logo.style.removeProperty("--from-y");
+logo.style.removeProperty("--to-x");
+logo.style.removeProperty("--to-y");
+
+}
+
+cleaningCard.setAttribute("aria-expanded","false");
+
+},3400);
+
+}
 
 if(cleaningCard){
 
-  cleaningCard.addEventListener(
-    "click",
-    runCleaningSweep
-  );
+cleaningCard.addEventListener("click",runCleaningSweep);
 
-  cleaningCard.addEventListener(
-    "keydown",
-    e=>{
+cleaningCard.addEventListener("keydown",e=>{
 
-      if(
-        e.key==="Enter" ||
-        e.key===" "
-      ){
+if(e.key==="Enter"||e.key===" "){
 
-        e.preventDefault();
-
-        runCleaningSweep();
-
-      }
-
-    }
-  );
+e.preventDefault();
+runCleaningSweep();
 
 }
 
+});
 
-/* LANGUAGE */
+}
 
-const langBtn =
-  document.getElementById("langBtn");
+const langBtn=document.getElementById("langBtn");
+const langMenu=document.getElementById("langMenu");
 
-const langMenu =
-  document.getElementById("langMenu");
-
-
-const langNames = {
-
-  de:"🇩🇪 DE",
-  en:"🇬🇧 EN",
-  fa:"🇮🇷 FA",
-  uk:"🇺🇦 UK",
-  ru:"🇷🇺 RU"
-
+const langNames={
+de:"🇩🇪 DE",
+en:"🇬🇧 EN",
+fa:"🇮🇷 FA",
+uk:"🇺🇦 UK",
+ru:"🇷🇺 RU"
 };
 
+langBtn.addEventListener("click",e=>{
 
-langBtn.addEventListener(
-  "click",
-  function(e){
+e.stopPropagation();
 
-    e.stopPropagation();
+langMenu.classList.toggle("open");
 
-    langMenu.classList.toggle("open");
+});
 
-  }
-);
+document.addEventListener("click",()=>{
 
+langMenu.classList.remove("open");
 
-document.addEventListener(
-  "click",
-  function(){
+});
 
-    langMenu.classList.remove(
-      "open"
-    );
+document.querySelectorAll("[data-lang]").forEach(button=>{
 
-  }
-);
+button.addEventListener("click",function(){
 
+setLanguage(this.dataset.lang);
 
-document
-  .querySelectorAll("[data-lang]")
-  .forEach(button=>{
+});
 
-    button.addEventListener(
-      "click",
-      function(){
-
-        const lang =
-          this.dataset.lang;
-
-        setLanguage(lang);
-
-      }
-    );
-
-  });
-
+});
 
 function setLanguage(lang){
 
-  const data =
-    translations[lang];
+const data=translations[lang];
 
-  if(!data) return;
+if(!data)return;
 
+document.documentElement.lang=lang;
+document.documentElement.dir=lang==="fa"?"rtl":"ltr";
 
-  document.documentElement.lang =
-    lang;
+document.querySelectorAll("[data-i18n]").forEach(el=>{
 
-  document.documentElement.dir =
-    lang==="fa"
-      ? "rtl"
-      : "ltr";
+const key=el.dataset.i18n;
 
+if(data[key]!==undefined){
 
-  document
-    .querySelectorAll("[data-i18n]")
-    .forEach(el=>{
-
-      const key =
-        el.dataset.i18n;
-
-      if(data[key] !== undefined){
-
-        el.innerHTML =
-          data[key];
-
-      }
-
-    });
-
-
-  langBtn.innerHTML =
-    langNames[lang] +
-    ' <span>▾</span>';
-
-
-  localStorage.setItem(
-    "cleanimann-language",
-    lang
-  );
-
-
-  langMenu.classList.remove(
-    "open"
-  );
+el.innerHTML=data[key];
 
 }
 
+});
 
-const savedLanguage =
-  localStorage.getItem(
-    "cleanimann-language"
-  ) || "de";
+langBtn.innerHTML=langNames[lang]+' <span>▾</span>';
 
+localStorage.setItem("cleanimann-language",lang);
 
-setLanguage(
-  savedLanguage
-);
+langMenu.classList.remove("open");
 
+}
 
-/* LOADER */
+const savedLanguage=localStorage.getItem("cleanimann-language")||"de";
 
-window.addEventListener(
-  "load",
-  function(){
+setLanguage(savedLanguage);
 
-    setTimeout(
-      function(){
+window.addEventListener("load",()=>{
 
-        document
-          .getElementById("loader")
-          .classList.add("hide");
+setTimeout(()=>{
 
-        document.body
-          .classList.add("loaded");
+document.getElementById("loader").classList.add("hide");
 
-      },
-      700
-    );
+document.body.classList.add("loaded");
 
-  }
-);
+},700);
 
+});
 
-/* REVEAL */
+const observer=new IntersectionObserver(entries=>{
 
-const observer =
-  new IntersectionObserver(
-    entries=>{
+entries.forEach(entry=>{
 
-      entries.forEach(entry=>{
+if(entry.isIntersecting){
 
-        if(entry.isIntersecting){
+entry.target.classList.add("visible");
 
-          entry.target.classList.add(
-            "visible"
-          );
+}
 
-        }
+});
 
-      });
+},{threshold:.12});
 
-    },
-    {
-      threshold:.12
-    }
-  );
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 
+const heroImage=document.querySelector(".hero-image");
 
-document
-  .querySelectorAll(".reveal")
-  .forEach(el=>{
+window.addEventListener("scroll",()=>{
 
-    observer.observe(el);
+const scrollY=window.scrollY;
 
-  });
+if(scrollY<window.innerHeight){
 
+heroImage.style.transform=
+`scale(1.03) translateY(${scrollY*.08}px)`;
 
-/* HERO PARALLAX */
+}
 
-const heroImage =
-  document.querySelector(
-    ".hero-image"
-  );
-
-
-window.addEventListener(
-  "scroll",
-  function(){
-
-    const scrollY =
-      window.scrollY;
-
-    if(
-      scrollY <
-      window.innerHeight
-    ){
-
-      heroImage.style.transform =
-        `scale(1.03) translateY(${scrollY * .08}px)`;
-
-    }
-
-  }
-);
+});
 
 </script>
 
